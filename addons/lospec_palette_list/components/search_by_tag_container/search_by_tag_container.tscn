@@ -1,0 +1,35 @@
+[gd_scene format=2]
+
+[node name="SearchByTagContainer" type="VBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SearchByTagLabel" type="Label" parent="."]
+margin_right = 1024.0
+margin_bottom = 14.0
+text = "Search by tag:"
+
+[node name="Margin10" type="MarginContainer" parent="."]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="SearchByTagLineEdit" type="LineEdit" parent="."]
+margin_top = 32.0
+margin_right = 1024.0
+margin_bottom = 56.0
+clear_button_enabled = true
+placeholder_text = "Type a tag..."
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Margin20" type="MarginContainer" parent="."]
+margin_top = 60.0
+margin_right = 1024.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 20 )

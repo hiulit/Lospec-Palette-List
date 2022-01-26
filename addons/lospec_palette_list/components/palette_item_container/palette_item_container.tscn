@@ -1,0 +1,103 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/lospec_palette_list/components/palette_item/palette_item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/lospec_palette_list/components/palette_item_container/palette_item_container.gd" type="Script" id=2]
+
+[node name="PaletteItemContainer" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin10_1" type="MarginContainer" parent="."]
+margin_right = 10.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="PaletteItemInner" type="VBoxContainer" parent="."]
+margin_left = 14.0
+margin_right = 1010.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Margin10_1" type="MarginContainer" parent="PaletteItemInner"]
+margin_right = 996.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="PaletteItem" parent="PaletteItemInner" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 14.0
+margin_right = 996.0
+margin_bottom = 586.0
+
+[node name="PaletteItemHeader" parent="PaletteItemInner/PaletteItem" index="0"]
+margin_right = 996.0
+
+[node name="TitleContainer" parent="PaletteItemInner/PaletteItem/PaletteItemHeader" index="0"]
+margin_right = 870.0
+
+[node name="Title" parent="PaletteItemInner/PaletteItem/PaletteItemHeader/TitleContainer" index="0"]
+margin_right = 870.0
+
+[node name="CreatedBy" parent="PaletteItemInner/PaletteItem/PaletteItemHeader/TitleContainer" index="1"]
+margin_right = 870.0
+
+[node name="CopyButton" parent="PaletteItemInner/PaletteItem/PaletteItemHeader" index="1"]
+margin_left = 874.0
+margin_right = 917.0
+
+[node name="DownloadMenuButton" parent="PaletteItemInner/PaletteItem/PaletteItemHeader" index="2"]
+margin_left = 921.0
+margin_right = 996.0
+items = [ "PNG Image (1x)", null, 0, false, false, 0, 0, null, "", false, "PNG Image (8x)", null, 0, false, false, 1, 0, null, "", false, "PNG Image (32x)", null, 0, false, false, 2, 0, null, "", false ]
+
+[node name="Margin15" parent="PaletteItemInner/PaletteItem" index="1"]
+margin_right = 996.0
+
+[node name="ColorsGrid" parent="PaletteItemInner/PaletteItem" index="2"]
+margin_right = 996.0
+margin_bottom = 523.0
+
+[node name="Margin5" parent="PaletteItemInner/PaletteItem" index="3"]
+margin_top = 527.0
+margin_right = 996.0
+margin_bottom = 532.0
+
+[node name="TagsContainer" parent="PaletteItemInner/PaletteItem" index="4"]
+margin_top = 536.0
+margin_right = 996.0
+margin_bottom = 550.0
+
+[node name="TagsList" parent="PaletteItemInner/PaletteItem/TagsContainer" index="1"]
+margin_right = 996.0
+
+[node name="Margin10" parent="PaletteItemInner/PaletteItem" index="5"]
+margin_top = 554.0
+margin_right = 996.0
+margin_bottom = 564.0
+
+[node name="HSeparator" parent="PaletteItemInner/PaletteItem" index="6"]
+margin_top = 568.0
+margin_right = 996.0
+margin_bottom = 572.0
+
+[node name="Margin10_2" type="MarginContainer" parent="PaletteItemInner"]
+margin_top = 590.0
+margin_right = 996.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="Margin10_2" type="MarginContainer" parent="."]
+margin_left = 1014.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 10, 0 )
+
+[editable path="PaletteItemInner/PaletteItem"]

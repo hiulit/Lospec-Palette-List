@@ -1,0 +1,119 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/lospec_palette_list/h_flow_container/h_flow_container.gd" type="Script" id=1]
+
+[node name="PaletteItem" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PaletteItemHeader" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 32.0
+
+[node name="TitleContainer" type="VBoxContainer" parent="PaletteItemHeader"]
+margin_right = 898.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="PaletteItemHeader/TitleContainer"]
+margin_right = 898.0
+margin_bottom = 14.0
+text = "Title"
+autowrap = true
+uppercase = true
+
+[node name="CreatedBy" type="Label" parent="PaletteItemHeader/TitleContainer"]
+margin_top = 18.0
+margin_right = 898.0
+margin_bottom = 32.0
+text = "Created by"
+autowrap = true
+
+[node name="CopyButton" type="Button" parent="PaletteItemHeader"]
+margin_left = 902.0
+margin_top = 12.0
+margin_right = 945.0
+margin_bottom = 32.0
+hint_tooltip = "Copy palette array in clipboard"
+size_flags_vertical = 8
+text = "Copy"
+
+[node name="DownloadMenuButton" type="MenuButton" parent="PaletteItemHeader"]
+margin_left = 949.0
+margin_top = 12.0
+margin_right = 1024.0
+margin_bottom = 32.0
+hint_tooltip = "Download palette file"
+focus_mode = 2
+size_flags_vertical = 8
+text = "Download"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="PaletteItemHeader/DownloadMenuButton"]
+
+[node name="FakeButton" type="Button" parent="PaletteItemHeader/DownloadMenuButton"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin15" type="MarginContainer" parent="."]
+margin_top = 36.0
+margin_right = 1024.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="ColorsGrid" type="Container" parent="."]
+margin_top = 55.0
+margin_right = 1024.0
+margin_bottom = 551.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+horizontal_margin = 0.0
+vertical_margin = 0.0
+
+[node name="Margin5" type="MarginContainer" parent="."]
+margin_top = 555.0
+margin_right = 1024.0
+margin_bottom = 560.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="TagsContainer" type="HBoxContainer" parent="."]
+margin_top = 564.0
+margin_right = 1024.0
+margin_bottom = 578.0
+size_flags_horizontal = 3
+
+[node name="TagsLabel" type="Label" parent="TagsContainer"]
+margin_right = 32.0
+margin_bottom = 14.0
+size_flags_vertical = 0
+text = "Tags:"
+
+[node name="TagsList" type="Container" parent="TagsContainer"]
+margin_left = 36.0
+margin_right = 1024.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+horizontal_margin = 0.0
+vertical_margin = 0.0
+
+[node name="Margin10" type="MarginContainer" parent="."]
+margin_top = 582.0
+margin_right = 1024.0
+margin_bottom = 592.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_top = 596.0
+margin_right = 1024.0
+margin_bottom = 600.0

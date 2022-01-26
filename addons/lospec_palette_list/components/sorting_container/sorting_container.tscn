@@ -1,0 +1,59 @@
+[gd_scene format=2]
+
+[node name="SortingContainer" type="VBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SortingLabel" type="Label" parent="."]
+margin_right = 1024.0
+margin_bottom = 14.0
+text = "Sorting:"
+
+[node name="Margin10" type="MarginContainer" parent="."]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="SortingButtonsContainer" type="HBoxContainer" parent="."]
+margin_top = 32.0
+margin_right = 1024.0
+margin_bottom = 52.0
+size_flags_vertical = 3
+
+[node name="Default" type="Button" parent="SortingButtonsContainer"]
+margin_right = 253.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Default"
+
+[node name="Alphabetical" type="Button" parent="SortingButtonsContainer"]
+margin_left = 257.0
+margin_right = 510.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "A-Z"
+
+[node name="Downloads" type="Button" parent="SortingButtonsContainer"]
+margin_left = 514.0
+margin_right = 767.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Downloads"
+
+[node name="Newest" type="Button" parent="SortingButtonsContainer"]
+margin_left = 771.0
+margin_right = 1024.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Newest"
+
+[node name="Margin20" type="MarginContainer" parent="."]
+margin_top = 56.0
+margin_right = 1024.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 0, 20 )

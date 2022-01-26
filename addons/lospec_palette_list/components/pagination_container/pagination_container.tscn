@@ -1,0 +1,26 @@
+[gd_scene format=2]
+
+[node name="PaginationContainer" type="HBoxContainer"]
+anchor_right = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PreviousButton" type="Button" parent="."]
+margin_right = 75.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 75, 0 )
+text = "Previous"
+
+[node name="Margin5" type="MarginContainer" parent="."]
+margin_left = 79.0
+margin_right = 84.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="NextButton" type="Button" parent="."]
+margin_left = 88.0
+margin_right = 163.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 75, 0 )
+text = "Next"

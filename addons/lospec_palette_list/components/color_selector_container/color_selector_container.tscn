@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/lospec_palette_list/components/filter_type_buttons_container/filter_type_buttons_container.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/lospec_palette_list/components/slider_container/slider_container.tscn" type="PackedScene" id=2]
+
+[node name="ColorSelectorContainer" type="VBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorSelectorLabel" type="Label" parent="."]
+margin_right = 1024.0
+margin_bottom = 14.0
+text = "Number of colors:"
+
+[node name="Margin10" type="MarginContainer" parent="."]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 0, 10 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 32.0
+margin_right = 1024.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FilterTypeButtonsContainer" parent="HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_right = 498.0
+margin_bottom = 24.0
+
+[node name="Margin20" type="MarginContainer" parent="HBoxContainer"]
+margin_left = 502.0
+margin_right = 522.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="SliderContainer" parent="HBoxContainer" instance=ExtResource( 2 )]
+
+[node name="Margin20" type="MarginContainer" parent="."]
+margin_top = 60.0
+margin_right = 1024.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 20 )

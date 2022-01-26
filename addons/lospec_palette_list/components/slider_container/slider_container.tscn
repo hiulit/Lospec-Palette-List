@@ -1,0 +1,37 @@
+[gd_scene format=2]
+
+[node name="SliderContainer" type="HBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SliderLineEdit" type="LineEdit" parent="."]
+margin_right = 58.0
+margin_bottom = 24.0
+text = "8"
+align = 1
+max_length = 3
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Margin20" type="MarginContainer" parent="."]
+margin_left = 62.0
+margin_right = 82.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Slider" type="HSlider" parent="."]
+margin_left = 86.0
+margin_top = 4.0
+margin_right = 1024.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 3.0
+min_value = 2.0
+max_value = 256.0
+value = 8.0

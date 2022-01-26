@@ -1,0 +1,37 @@
+[gd_scene format=2]
+
+[node name="FilterTypeButtonsContainer" type="HBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Any" type="Button" parent="."]
+margin_right = 253.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Any"
+
+[node name="Max" type="Button" parent="."]
+margin_left = 257.0
+margin_right = 510.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Max"
+
+[node name="Min" type="Button" parent="."]
+margin_left = 514.0
+margin_right = 767.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Min"
+
+[node name="Exact" type="Button" parent="."]
+margin_left = 771.0
+margin_right = 1024.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Exact"

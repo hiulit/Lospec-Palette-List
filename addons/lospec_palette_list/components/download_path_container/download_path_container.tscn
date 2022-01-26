@@ -1,0 +1,40 @@
+[gd_scene format=2]
+
+[node name="DownloadPathContainer" type="HBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownloadPathLabel" type="Label" parent="."]
+margin_top = 5.0
+margin_right = 99.0
+margin_bottom = 19.0
+text = "Download path:"
+
+[node name="DownloadPathLineEdit" type="LineEdit" parent="."]
+margin_left = 103.0
+margin_right = 945.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+editable = false
+
+[node name="DownloadPathButton" type="Button" parent="."]
+margin_left = 949.0
+margin_right = 1024.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 75, 0 )
+text = "Choose"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DownloadPathFileDialog" type="FileDialog" parent="."]
+margin_left = 608.0
+margin_right = 1024.0
+margin_bottom = 184.0
+rect_min_size = Vector2( 400, 140 )
+window_title = "Open a Directory"
+mode = 2

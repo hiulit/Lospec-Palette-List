@@ -1,0 +1,21 @@
+[gd_scene format=2]
+
+[node name="ResultsContainer" type="HBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResultsLabel" type="Label" parent="."]
+margin_right = 100.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 100, 0 )
+text = "0 RESULTS"
+uppercase = true
+
+[node name="Margin20" type="MarginContainer" parent="."]
+margin_left = 104.0
+margin_right = 124.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 20, 0 )

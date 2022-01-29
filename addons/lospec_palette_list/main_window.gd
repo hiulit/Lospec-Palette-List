@@ -122,6 +122,9 @@ func _ready():
 
 	if Engine.editor_hint:
 		base_color_rect_size *= 2
+		results_label.rect_min_size.x = 250
+	else:
+		results_label.rect_min_size.x = 100
 
 	make_http_call()
 

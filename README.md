@@ -4,7 +4,7 @@ Browse through thousands of awesome [Lospec palettes](https://lospec.com/palette
 
 Made for the [Godot Addons Jam #1](https://itch.io/jam/godot-addons-jam-1).
 
-![Godot PLugin Lospec banner](godot-plugin-lospec-banner.jpg)
+![Godot PLugin Lospec banner](/godot-plugin-lospec-banner.jpg)
 
 ## 📌 Features:
 

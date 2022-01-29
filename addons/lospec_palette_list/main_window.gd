@@ -5,7 +5,7 @@ const CONFIG_FILE := "user://godot_lospec_settings.cfg"
 
 var config := ConfigFile.new()
 
-var base_url := "https://lospec.com/palette-list/"
+var base_url := "https://lospec-api.vercel.app/api"
 
 var query_params := {
 	"filter_type": "any",
@@ -138,7 +138,7 @@ func create_config_file():
 
 
 func set_query_string():
-	query_string = "load?" \
+	query_string = "?" \
 		+ "colorNumberFilterType=" + query_params.filter_type \
 		+ "&colorNumber=" + str(query_params.number) \
 		+ "&page=" + str(query_params.page) \

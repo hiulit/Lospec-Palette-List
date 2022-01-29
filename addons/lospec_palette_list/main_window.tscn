@@ -54,6 +54,7 @@ margin_right = 478.0
 margin_right = 116.0
 margin_bottom = 24.0
 toggle_mode = true
+pressed = true
 group = ExtResource( 8 )
 
 [node name="Max" parent="MainContainer/ColorSelectorContainer/HBoxContainer/FilterTypeButtonsContainer" index="1"]
@@ -120,6 +121,7 @@ margin_bottom = 56.0
 margin_right = 116.0
 margin_bottom = 24.0
 toggle_mode = true
+pressed = true
 group = ExtResource( 9 )
 
 [node name="Alphabetical" parent="MainContainer/SearchAndSortContainer/SortingContainer/SortingButtonsContainer" index="1"]
@@ -164,21 +166,25 @@ size_flags_horizontal = 3
 
 [node name="ResultsContainer" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_right = 124.0
+margin_right = 274.0
 margin_bottom = 24.0
 
 [node name="ResultsLabel" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer" index="0"]
 margin_top = 5.0
+margin_right = 250.0
 margin_bottom = 19.0
-text = "2076 results"
+rect_min_size = Vector2( 250, 0 )
+text = "2080 results"
 
 [node name="Margin20" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer" index="1"]
+margin_left = 254.0
+margin_right = 274.0
 margin_bottom = 24.0
 
 [node name="PaginationContainer" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_left = 128.0
-margin_right = 291.0
+margin_left = 278.0
+margin_right = 441.0
 margin_bottom = 24.0
 
 [node name="PreviousButton" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/PaginationContainer" index="0"]
@@ -242,7 +248,7 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="MainContainer/PalettesContainer/ScrollContainer"]
 margin_right = 972.0
-margin_bottom = 3416.0
+margin_bottom = 3442.0
 size_flags_horizontal = 3
 columns = 2
 

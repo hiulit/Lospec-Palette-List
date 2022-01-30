@@ -18,5 +18,6 @@ project.godot
 *.DS_Store
 
 godot-plugin-lospec-banner.jpg.import
+icon.ico
 
 builds/

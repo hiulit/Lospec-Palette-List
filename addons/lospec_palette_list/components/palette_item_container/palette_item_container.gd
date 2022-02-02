@@ -1,12 +1,12 @@
 tool
 extends HBoxContainer
 
+var images_base_url = "https://lospec.com/palette-list"
 var palette_image_sizes = [1, 8, 32]
 
 var palette_colors
 var slug
 var current_download_path
-var base_url
 var download_popup
 var file_name
 
@@ -50,7 +50,7 @@ func _on_download_popup_item_pressed(id):
 
 	file_name = slug + "-" + size + ".png"
 
-	var url = base_url + file_name
+	var url = images_base_url + "/" + file_name
 
 	var error = http_request.request(url)
 	if error != OK:

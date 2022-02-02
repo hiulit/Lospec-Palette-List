@@ -4,19 +4,20 @@ extends HBoxContainer
 var images_base_url = "https://lospec.com/palette-list"
 var palette_image_sizes = [1, 8, 32]
 
-var palette_colors
-var slug
 var current_download_path
 var download_popup
 var file_name
+var palette_colors
+var slug
 
-onready var title := $PaletteItemInner/PaletteItem/PaletteItemHeader/TitleContainer/Title
-onready var created_by := $PaletteItemInner/PaletteItem/PaletteItemHeader/TitleContainer/CreatedBy
 onready var colors_grid := $PaletteItemInner/PaletteItem/ColorsGrid
+onready var copy_button := $PaletteItemInner/PaletteItem/PaletteItemHeader/CopyButton
+onready var created_by := $PaletteItemInner/PaletteItem/PaletteItemHeader/TitleContainer/CreatedBy
 onready var download_menu_button := $PaletteItemInner/PaletteItem/PaletteItemHeader/DownloadMenuButton
 onready var http_request := $PaletteItemInner/PaletteItem/PaletteItemHeader/DownloadMenuButton/HTTPRequest
-onready var copy_button := $PaletteItemInner/PaletteItem/PaletteItemHeader/CopyButton
+onready var tags_label := $PaletteItemInner/PaletteItem/TagsContainer/TagsLabel
 onready var tags_list := $PaletteItemInner/PaletteItem/TagsContainer/TagsList
+onready var title := $PaletteItemInner/PaletteItem/PaletteItemHeader/TitleContainer/Title
 
 
 func _ready():

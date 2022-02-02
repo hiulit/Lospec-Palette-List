@@ -15,13 +15,13 @@ __meta__ = {
 
 [node name="Margin10_1" type="MarginContainer" parent="."]
 margin_right = 10.0
-margin_bottom = 600.0
+margin_bottom = 768.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="PaletteItemInner" type="VBoxContainer" parent="."]
 margin_left = 14.0
 margin_right = 1010.0
-margin_bottom = 600.0
+margin_bottom = 768.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -35,7 +35,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 14.0
 margin_right = 996.0
-margin_bottom = 586.0
+margin_bottom = 754.0
 
 [node name="PaletteItemHeader" parent="PaletteItemInner/PaletteItem" index="0"]
 margin_right = 996.0
@@ -63,41 +63,41 @@ margin_right = 996.0
 
 [node name="ColorsGrid" parent="PaletteItemInner/PaletteItem" index="2"]
 margin_right = 996.0
-margin_bottom = 523.0
+margin_bottom = 691.0
 
 [node name="Margin5" parent="PaletteItemInner/PaletteItem" index="3"]
-margin_top = 527.0
+margin_top = 695.0
 margin_right = 996.0
-margin_bottom = 532.0
+margin_bottom = 700.0
 
 [node name="TagsContainer" parent="PaletteItemInner/PaletteItem" index="4"]
-margin_top = 536.0
+margin_top = 704.0
 margin_right = 996.0
-margin_bottom = 550.0
+margin_bottom = 718.0
 
 [node name="TagsList" parent="PaletteItemInner/PaletteItem/TagsContainer" index="1"]
 margin_right = 996.0
 
 [node name="Margin10" parent="PaletteItemInner/PaletteItem" index="5"]
-margin_top = 554.0
+margin_top = 722.0
 margin_right = 996.0
-margin_bottom = 564.0
+margin_bottom = 732.0
 
 [node name="HSeparator" parent="PaletteItemInner/PaletteItem" index="6"]
-margin_top = 568.0
+margin_top = 736.0
 margin_right = 996.0
-margin_bottom = 572.0
+margin_bottom = 740.0
 
 [node name="Margin10_2" type="MarginContainer" parent="PaletteItemInner"]
-margin_top = 590.0
+margin_top = 758.0
 margin_right = 996.0
-margin_bottom = 600.0
+margin_bottom = 768.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="Margin10_2" type="MarginContainer" parent="."]
 margin_left = 1014.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 768.0
 rect_min_size = Vector2( 10, 0 )
 
 [editable path="PaletteItemInner/PaletteItem"]

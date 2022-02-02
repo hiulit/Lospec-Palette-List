@@ -73,7 +73,7 @@ rect_min_size = Vector2( 0, 15 )
 [node name="ColorsGrid" type="Container" parent="."]
 margin_top = 55.0
 margin_right = 1024.0
-margin_bottom = 551.0
+margin_bottom = 719.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -81,15 +81,15 @@ horizontal_margin = 0.0
 vertical_margin = 0.0
 
 [node name="Margin5" type="MarginContainer" parent="."]
-margin_top = 555.0
+margin_top = 723.0
 margin_right = 1024.0
-margin_bottom = 560.0
+margin_bottom = 728.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="TagsContainer" type="HBoxContainer" parent="."]
-margin_top = 564.0
+margin_top = 732.0
 margin_right = 1024.0
-margin_bottom = 578.0
+margin_bottom = 746.0
 size_flags_horizontal = 3
 
 [node name="TagsLabel" type="Label" parent="TagsContainer"]
@@ -108,12 +108,12 @@ horizontal_margin = -10.0
 vertical_margin = -10.0
 
 [node name="Margin10" type="MarginContainer" parent="."]
-margin_top = 582.0
+margin_top = 750.0
 margin_right = 1024.0
-margin_bottom = 592.0
+margin_bottom = 760.0
 rect_min_size = Vector2( 0, 10 )
 
 [node name="HSeparator" type="HSeparator" parent="."]
-margin_top = 596.0
+margin_top = 764.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 768.0

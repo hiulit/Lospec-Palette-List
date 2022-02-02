@@ -104,8 +104,8 @@ margin_right = 1024.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 script = ExtResource( 1 )
-horizontal_margin = 0.0
-vertical_margin = 0.0
+horizontal_margin = -10.0
+vertical_margin = -10.0
 
 [node name="Margin10" type="MarginContainer" parent="."]
 margin_top = 582.0

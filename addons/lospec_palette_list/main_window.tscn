@@ -166,25 +166,24 @@ size_flags_horizontal = 3
 
 [node name="ResultsContainer" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper" instance=ExtResource( 5 )]
 anchor_right = 0.0
-margin_right = 274.0
+margin_right = 311.0
 margin_bottom = 24.0
 
 [node name="ResultsLabel" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer" index="0"]
 margin_top = 5.0
-margin_right = 250.0
+margin_right = 89.0
 margin_bottom = 19.0
-rect_min_size = Vector2( 250, 0 )
-text = "2080 results"
+text = "2094 results"
 
 [node name="Margin20" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer" index="1"]
-margin_left = 254.0
-margin_right = 274.0
+margin_left = 93.0
+margin_right = 113.0
 margin_bottom = 24.0
 
 [node name="PaginationContainer" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper" instance=ExtResource( 4 )]
 anchor_right = 0.0
-margin_left = 278.0
-margin_right = 441.0
+margin_left = 315.0
+margin_right = 478.0
 margin_bottom = 24.0
 
 [node name="PreviousButton" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/PaginationContainer" index="0"]
@@ -216,6 +215,10 @@ text = "res://"
 margin_left = 403.0
 margin_right = 478.0
 
+[node name="DownloadPathFileDialog" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/DownloadPathContainer" index="3"]
+margin_left = 244.0
+margin_right = 660.0
+
 [node name="Margin10" type="MarginContainer" parent="MainContainer/ResultsAndDowloadPathContainer"]
 margin_top = 28.0
 margin_right = 984.0
@@ -232,7 +235,7 @@ rect_min_size = Vector2( 0, 10 )
 [node name="PalettesContainer" type="Control" parent="MainContainer"]
 margin_top = 224.0
 margin_right = 984.0
-margin_bottom = 560.0
+margin_bottom = 728.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -248,7 +251,7 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="MainContainer/PalettesContainer/ScrollContainer"]
 margin_right = 972.0
-margin_bottom = 3442.0
+margin_bottom = 1106.0
 size_flags_horizontal = 3
 columns = 2
 

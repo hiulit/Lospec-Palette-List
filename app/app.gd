@@ -13,7 +13,7 @@ onready var main_window := preload("res://addons/lospec_palette_list/main_window
 func _ready():
 	OS.set_window_title("Lospec Palette List")
 
-	if ProjectSettings.get_setting("display/window/dpi/allow_hidpi"):
+	if OS.get_screen_dpi(OS.get_current_screen()) > 120:
 		get_tree().set_screen_stretch(
 			SceneTree.STRETCH_MODE_DISABLED,
 			SceneTree.STRETCH_ASPECT_IGNORE,

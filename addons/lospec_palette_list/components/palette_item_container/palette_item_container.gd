@@ -21,7 +21,6 @@ onready var title := $PaletteItemInner/PaletteItem/PaletteItemHeader/TitleContai
 
 
 func _ready():
-	print(Color("#181322"))
 	add_to_group("palette_item_container")
 
 	# Connect signals

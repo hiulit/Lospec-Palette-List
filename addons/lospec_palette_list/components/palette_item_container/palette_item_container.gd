@@ -55,27 +55,47 @@ func _on_download_popup_item_pressed(id):
 	var item_name = download_popup.get_item_text(id)
 
 	if item_name == "Open in Sprite Editor":
+		var image_max_x := 128.0
 		var image := Image.new()
-		var image_size = Vector2(128, 128)
+
+		var rows := 4.0
+
+		if palette_colors.size() > 32:
+			rows = 8.0
+		if palette_colors.size() > 128:
+			rows = 16.0
+
+		var columns := ceil(palette_colors.size() / rows)
+
+		var image_size := Vector2(image_max_x, (image_max_x / rows) * columns)
 
 		image.create(image_size.x, image_size.y, false, Image.FORMAT_RGBA8)
 
-		for i in palette_colors.size():
-			var color = palette_colors[i].replace("\"", "")
-			var blit_image := Image.new()
+		var i = 0
 
-			blit_image.lock()
-			blit_image.fill(Color(color))
-			blit_image.unlock()
-			image.blit_rect(
-				blit_image,
-				Rect2(
-					Vector2(i * image_size.x / 2, i * image_size.y / 2),
-					Vector2(image_size.x / 2, image_size.y / 2)
-				),
-				Vector2(0, 0)
-			)
-			image.save_png("res://palette.png")
+		for y in columns:
+			for x in rows:
+				var color = palette_colors[i].replace("\"", "")
+				var blit_image := Image.new()
+
+				blit_image.create(image_size.x / rows, image_size.y / columns, false, Image.FORMAT_RGBA8)
+				blit_image.fill(Color(color))
+
+				image.blit_rect(
+					blit_image,
+					Rect2(
+						Vector2(0, 0),
+						Vector2(blit_image.get_size().x, blit_image.get_size().y)
+					),
+					Vector2(x * blit_image.get_size().x,y * blit_image.get_size().y)
+				)
+
+				i += 1
+
+				if i > palette_colors.size() - 1:
+					break
+
+		image.save_png("res://addons/pixel_ever/pal/%s.png" % slug)
 
 		return
 

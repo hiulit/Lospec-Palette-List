@@ -21,6 +21,7 @@ onready var title := $PaletteItemInner/PaletteItem/PaletteItemHeader/TitleContai
 
 
 func _ready():
+	print(Color("#181322"))
 	add_to_group("palette_item_container")
 
 	# Connect signals
@@ -30,6 +31,11 @@ func _ready():
 	# Create download popup.
 	download_popup = download_menu_button.get_popup()
 	download_popup.clear()
+
+	var d = Directory.new()
+	if d.dir_exists("res://addons/pixel_ever"):
+		download_popup.add_item("Open in Sprite Editor")
+
 	for size in palette_image_sizes:
 		download_popup.add_item("PNG Image (%sx)" % str(size))
 	download_popup.connect("id_pressed", self, "_on_download_popup_item_pressed")
@@ -47,6 +53,32 @@ func _on_copy_button_pressed():
 
 func _on_download_popup_item_pressed(id):
 	var item_name = download_popup.get_item_text(id)
+
+	if item_name == "Open in Sprite Editor":
+		var image := Image.new()
+		var image_size = Vector2(128, 128)
+
+		image.create(image_size.x, image_size.y, false, Image.FORMAT_RGBA8)
+
+		for i in palette_colors.size():
+			var color = palette_colors[i].replace("\"", "")
+			var blit_image := Image.new()
+
+			blit_image.lock()
+			blit_image.fill(Color(color))
+			blit_image.unlock()
+			image.blit_rect(
+				blit_image,
+				Rect2(
+					Vector2(i * image_size.x / 2, i * image_size.y / 2),
+					Vector2(image_size.x / 2, image_size.y / 2)
+				),
+				Vector2(0, 0)
+			)
+			image.save_png("res://palette.png")
+
+		return
+
 	var size = item_name.split("(")[1].replace(")", "")
 
 	file_name = slug + "-" + size + ".png"

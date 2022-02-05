@@ -56,7 +56,7 @@ margin_right = 917.0
 [node name="DownloadMenuButton" parent="PaletteItemInner/PaletteItem/PaletteItemHeader" index="2"]
 margin_left = 921.0
 margin_right = 996.0
-items = [ "PNG Image (1x)", null, 0, false, false, 0, 0, null, "", false, "PNG Image (8x)", null, 0, false, false, 1, 0, null, "", false, "PNG Image (32x)", null, 0, false, false, 2, 0, null, "", false ]
+items = [ "Open in Sprite Editor", null, 0, false, false, 0, 0, null, "", false, "PNG Image (1x)", null, 0, false, false, 1, 0, null, "", false, "PNG Image (8x)", null, 0, false, false, 2, 0, null, "", false, "PNG Image (32x)", null, 0, false, false, 3, 0, null, "", false ]
 
 [node name="Margin15" parent="PaletteItemInner/PaletteItem" index="1"]
 margin_right = 996.0

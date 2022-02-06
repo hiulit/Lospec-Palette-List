@@ -173,7 +173,7 @@ margin_bottom = 24.0
 margin_top = 5.0
 margin_right = 89.0
 margin_bottom = 19.0
-text = "2094 results"
+text = "2108 results"
 
 [node name="Margin20" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer" index="1"]
 margin_left = 93.0
@@ -251,7 +251,7 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="MainContainer/PalettesContainer/ScrollContainer"]
 margin_right = 972.0
-margin_bottom = 1106.0
+margin_bottom = 1322.0
 size_flags_horizontal = 3
 columns = 2
 

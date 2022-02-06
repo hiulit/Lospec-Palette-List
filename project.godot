@@ -1,0 +1,52 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Container",
+"class": "HFlowContainer",
+"language": "GDScript",
+"path": "res://addons/lospec_palette_list/h_flow_container/h_flow_container.gd"
+} ]
+_global_script_class_icons={
+"HFlowContainer": ""
+}
+
+[application]
+
+config/name="Godot Plugin Lospec"
+run/main_scene="res://app/app.tscn"
+config/icon="res://icon.png"
+config/version="1.1.0"
+config/godot_version="3.x"
+config/author="hiulit"
+config/license="MIT"
+config/repository="https://github.com/hiulit/Godot-Plugin-Lospec"
+config/patreon="https://www.patreon.com/hiulit"
+config/ko-fi="https://ko-fi.com/hiulit"
+config/buymeacoffee="https://www.buymeacoffee.com/hiulit"
+config/paypal="https://www.paypal.com/paypalme/hiulit"
+
+[display]
+
+window/size/height=768
+window/dpi/allow_hidpi=true
+
+[global]
+
+version=""
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+environment/default_environment="res://default_env.tres"

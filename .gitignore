@@ -8,16 +8,6 @@ export_presets.cfg
 .mono/
 data_*/
 
-# Godot-project ignores
-default_env.tres
-icon.png
-icon.png.import
-project.godot
-
-# macOS trash
 *.DS_Store
-
-godot-plugin-lospec-banner.jpg.import
-icon.ico
 
 builds/

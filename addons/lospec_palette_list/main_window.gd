@@ -207,16 +207,19 @@ func editing_slider(new_value):
 
 
 func _on_main_window_resized():
-	pass
-#	print(rect_size / 2)
-#	if rect_size.x / 2 < 700:
-#		grid_container.columns = 1
-#	elif rect_size.x / 2 < 1000:
-#		grid_container.columns = 2
-#	elif rect_size.x / 2 < 1300:
-#		grid_container.columns = 3
-#	else:
-#		grid_container.columns = 4
+	var window_size = rect_size
+
+	if OS.get_name() == "OSX" or OS.get_name() == "Windows":
+		window_size /= 2
+
+	if window_size.x < 768:
+		grid_container.columns = 1
+	elif window_size.x < 1280:
+		grid_container.columns = 2
+	elif window_size.x < 1440:
+		grid_container.columns = 3
+	else:
+		grid_container.columns = 4
 
 
 func _on_http_request_completed(result, response_code, headers, body):

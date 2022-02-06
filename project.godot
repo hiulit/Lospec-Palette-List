@@ -22,6 +22,9 @@ _global_script_class_icons={
 
 config/name="Godot Plugin Lospec"
 run/main_scene="res://app/app.tscn"
+boot_splash/image="res://splash.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0.2, 0.231373, 0.309804, 1 )
 config/icon="res://icon.png"
 config/version="1.1.0"
 config/godot_version="3.x"

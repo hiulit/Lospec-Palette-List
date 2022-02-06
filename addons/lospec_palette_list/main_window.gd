@@ -109,7 +109,18 @@ func _ready():
 	overlay_container.visible = false
 
 	# Make the HTTP call.
-	make_http_call()
+#	make_http_call()
+
+	var check_connection = HTTPRequest.new()
+	add_child(check_connection)
+	check_connection.connect("request_completed", self, "_check_connection_completed")
+	var error = check_connection.request(base_url)
+	if error != OK:
+		print("An error occurred in the HTTP request - ", error)
+		return
+	overlay_container.visible = true
+	overlay_container_label.text = "Downloading palettes..."
+	results_label.text = "Downloading..."
 
 
 func config_create() -> void:
@@ -176,7 +187,7 @@ func make_http_call():
 
 	var error = http_request.request(url)
 	if error != OK:
-		overlay_container_label.text = "An error occurred in the HTTP request."
+		overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
 		overlay_container.visible = true
 		results_label.text = "No results!"
 		return
@@ -226,7 +237,7 @@ func _on_http_request_completed(result, response_code, headers, body):
 	if result != 0 and response_code != 200:
 		overlay_container_label.text = "ERROR: " + str(result) + "-" + str(response_code)
 		overlay_container.visible = true
-		results_label.text = "No results!"
+		results_label.text = "Error!"
 		return
 
 	var response = parse_json(body.get_string_from_utf8())
@@ -234,7 +245,7 @@ func _on_http_request_completed(result, response_code, headers, body):
 	if "error" in response and response.error:
 		overlay_container_label.text = "ERROR: " + str(response.error)
 		overlay_container.visible = true
-		results_label.text = "No results!"
+		results_label.text = "Error!"
 		return
 
 	if not response.palettes:
@@ -442,3 +453,20 @@ func _set_current_download_path(new_value) -> void:
 
 		for item in get_tree().get_nodes_in_group("palette_item_container"):
 			item.current_download_path = current_download_path
+
+
+func _check_connection_completed(result, response_code, headers, body):
+	print("check connection")
+	print(result)
+	print(response_code)
+	if result != 0 and response_code != 200:
+		print("No internet connection!")
+		return
+
+	var response = body.get_string_from_utf8()
+	var f = File.new()
+	f.open("user://local_palettes.json", File.WRITE)
+	f.store_string(response)
+	f.close()
+
+	make_http_call()

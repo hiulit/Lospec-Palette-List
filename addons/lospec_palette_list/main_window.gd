@@ -29,6 +29,9 @@ var items_per_page
 
 var base_color_rect_size = 8
 
+var http_call_local := false
+var data: Dictionary
+
 var debug_mode := false
 
 onready var button_group_filter_type := preload(
@@ -52,6 +55,7 @@ onready var overlay_container := $MainContainer/PalettesContainer/OverlayContain
 onready var overlay_container_label := $MainContainer/PalettesContainer/OverlayContainer/OverlayLabel
 onready var previous_button := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/PaginationContainer/PreviousButton
 onready var results_label := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer/ResultsLabel
+onready var scroll_container := $MainContainer/PalettesContainer/ScrollContainer
 onready var search_by_tag_line_edit := $MainContainer/SearchAndSortContainer/SearchByTagContainer/SearchByTagLineEdit
 onready var slider := $MainContainer/ColorSelectorContainer/HBoxContainer/SliderContainer/Slider
 onready var slider_line_edit := $MainContainer/ColorSelectorContainer/HBoxContainer/SliderContainer/SliderLineEdit
@@ -99,6 +103,7 @@ func _ready():
 	self.current_download_path = config_get("settings", "download_path")
 
 	filter_type_buttons_container.get_child(0).pressed = true
+#	filter_type_buttons_container.get_child(0).emit_signal("pressed")
 	sorting_buttons_container.get_child(0).pressed = true
 
 	slider_line_edit.text = str(query_params.number)
@@ -108,19 +113,16 @@ func _ready():
 
 	overlay_container.visible = false
 
-	# Make the HTTP call.
-#	make_http_call()
-
 	var check_connection = HTTPRequest.new()
 	add_child(check_connection)
-	check_connection.connect("request_completed", self, "_check_connection_completed")
-	var error = check_connection.request(base_url)
+	check_connection.connect("request_completed", self, "_on_check_connection_completed")
+	var error = check_connection.request("https://example.com")
 	if error != OK:
 		print("An error occurred in the HTTP request - ", error)
 		return
 	overlay_container.visible = true
-	overlay_container_label.text = "Downloading palettes..."
-	results_label.text = "Downloading..."
+	overlay_container_label.text = "Loading..."
+	results_label.text = ""
 
 
 func config_create() -> void:
@@ -168,91 +170,172 @@ func set_url():
 	url = base_url + query_string
 
 
-func make_http_call():
-	if http_request.get_http_client_status() != 0:
-		http_request.cancel_request()
+func sort_alphabetical(a, b):
+	if a.title < b.title:
+		return true
+	return false
 
-	for child in grid_container.get_children():
-		child.queue_free()
+
+func sort_downloads(a, b):
+	if int(a.downloads) > int(b.downloads):
+		return true
+	return false
+
+
+func sort_newest(a, b):
+	if a.createdAt > b.createdAt:
+		return true
+	return false
+
+
+func filter_every(base_array: Array, filter_key: String, filter_array: Array):
+	var filtered_array = []
+
+	for base_item in base_array:
+		var count = 0
+
+		for filter_item in filter_array:
+			if filter_item in base_item[filter_key]:
+				count += 1
+
+		if count == filter_array.size():
+			filtered_array.append(base_item)
+
+	return filtered_array
+
+
+func make_http_call():
+	scroll_container.scroll_vertical = 0
+
+	if http_call_local:
+		var result := {"palettes": data.palettes, "totalCount": data.palettes.size()}
+
+		match query_params.filter_type:
+#			"any":
+#				result.palettes = data.palettes
+			"max":
+				var filtered_palettes := []
+
+				for palette in data.palettes:
+					if palette.colors.size() <= query_params.number:
+						filtered_palettes.append(palette)
+
+				result.palettes = filtered_palettes
+			"min":
+				var filtered_palettes := []
+
+				for palette in data.palettes:
+					if palette.colors.size() >= query_params.number:
+						filtered_palettes.append(palette)
+
+				result.palettes = filtered_palettes
+			"exact":
+				var filtered_palettes := []
+
+				for palette in data.palettes:
+					if palette.colors.size() == query_params.number:
+						filtered_palettes.append(palette)
+
+				result.palettes = filtered_palettes
+
+		match query_params.sorting_type:
+#			"default":
+#				result.palettes = data.palettes
+			"alphabetical":
+				var filtered_palettes = result.palettes.duplicate()
+				filtered_palettes.sort_custom(self, "sort_alphabetical")
+				result.palettes = filtered_palettes
+			"downloads":
+				var filtered_palettes = result.palettes.duplicate()
+				filtered_palettes.sort_custom(self, "sort_downloads")
+				result.palettes = filtered_palettes
+			"newest":
+				var filtered_palettes = result.palettes.duplicate()
+				filtered_palettes.sort_custom(self, "sort_newest")
+				result.palettes = filtered_palettes
+
+		if query_params.tag:
+			var tags := []
+			var tags_split = query_params.tag.split(",")
+			for tag in tags_split:
+				if tag:
+					tag = tag.strip_edges().replace("%20", "")
+					tags.append(tag)
+			result.palettes = filter_every(result.palettes, "tags", tags)
+
+		result = {
+			"palettes":
+			result.palettes.slice(query_params.page * 10, ((query_params.page + 1) * 10) - 1),
+			"totalCount": result.palettes.size()
+		}
+
+		for child in grid_container.get_children():
+			child.queue_free()
+
+#		overlay_container.visible = true
+#		overlay_container_label.text = "Loading..."
+#		results_label.text = ""
+
+		load_palettes(result)
+#		http_request.emit_signal("request_completed", 0, 200, "", result)
+	else:
+		if http_request.get_http_client_status() != 0:
+			http_request.cancel_request()
+
+		for child in grid_container.get_children():
+			child.queue_free()
+
+		overlay_container.visible = true
+		overlay_container_label.text = "Loading..."
+		results_label.text = ""
+
+		set_query_string()
+		set_url()
+
+		if debug_mode:
+			print(url)
+
+		var error = http_request.request(url)
+
+		if error != OK:
+			overlay_container.visible = true
+			overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
+			results_label.text = ""
+
+			return
+
+
+func download_palettes():
+	var palettes_request = HTTPRequest.new()
+	add_child(palettes_request)
+	palettes_request.connect("request_completed", self, "_on_palettes_request_completed")
 
 	overlay_container.visible = true
-	overlay_container_label.text = "Loading..."
-	results_label.text = "Loading..."
+	overlay_container_label.text = "Downloading palettes..."
+	results_label.text = ""
 
-	set_query_string()
-	set_url()
+	var error = palettes_request.request(base_url)
 
-	if debug_mode:
-		print(url)
-
-	var error = http_request.request(url)
 	if error != OK:
+		overlay_container.visible = true
 		overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
-		overlay_container.visible = true
-		results_label.text = "No results!"
+		results_label.text = ""
+
 		return
 
 
-# https://stackoverflow.com/a/50848344 (CC BY-SA 4.0)
-func editing_slider(new_value):
-	if not slider_timer_on:
-		slider_timer_on = true
-		yield(get_tree().create_timer(0.2), "timeout")
-		slider_timer_on = false
-
-		if slider_editing_value != new_value:
-			if debug_mode:
-				print("continue editing")
-
-			editing_slider(new_value)
-		else:
-			if debug_mode:
-				print("slider set to " + str(slider.value))
-
-			query_params.number = slider.value
-			query_params.page = 0
-
-			make_http_call()
-
-	slider_editing_value = new_value
-
-
-func _on_main_window_resized():
-	var window_size = rect_size
-
-	if OS.get_name() == "OSX" or OS.get_name() == "Windows":
-		window_size /= 2
-
-	if window_size.x < 768:
-		grid_container.columns = 1
-	elif window_size.x < 1280:
-		grid_container.columns = 2
-	elif window_size.x < 1440:
-		grid_container.columns = 3
-	else:
-		grid_container.columns = 4
-
-
-func _on_http_request_completed(result, response_code, headers, body):
-	if result != 0 and response_code != 200:
-		overlay_container_label.text = "ERROR: " + str(result) + "-" + str(response_code)
-		overlay_container.visible = true
-		results_label.text = "Error!"
-		return
-
-	var response = parse_json(body.get_string_from_utf8())
-
+func load_palettes(response: Dictionary):
 	if "error" in response and response.error:
-		overlay_container_label.text = "ERROR: " + str(response.error)
 		overlay_container.visible = true
-		results_label.text = "Error!"
+		overlay_container_label.text = "ERROR: " + str(response.error)
+		results_label.text = ""
 		return
 
 	if not response.palettes:
 		results_label.text = "No results!"
 
-		overlay_container_label.text = "No results!"
 		overlay_container.visible = true
+		overlay_container_label.text = "No results!"
 
 		previous_button.disabled = true
 		next_button.disabled = true
@@ -347,6 +430,56 @@ func _on_http_request_completed(result, response_code, headers, body):
 	overlay_container.visible = false
 
 
+# https://stackoverflow.com/a/50848344 (CC BY-SA 4.0)
+func editing_slider(new_value):
+	if not slider_timer_on:
+		slider_timer_on = true
+		yield(get_tree().create_timer(0.2), "timeout")
+		slider_timer_on = false
+
+		if slider_editing_value != new_value:
+			if debug_mode:
+				print("continue editing")
+
+			editing_slider(new_value)
+		else:
+			if debug_mode:
+				print("slider set to " + str(slider.value))
+
+			query_params.number = slider.value
+			query_params.page = 0
+
+			make_http_call()
+
+	slider_editing_value = new_value
+
+
+func _on_main_window_resized():
+	var window_size = rect_size
+
+	if window_size.x < 768:
+		grid_container.columns = 1
+	elif window_size.x < 1280:
+		grid_container.columns = 2
+	elif window_size.x < 1440:
+		grid_container.columns = 3
+	else:
+		grid_container.columns = 4
+
+
+func _on_http_request_completed(result, response_code, headers, body):
+	if result != 0 and response_code != 200:
+		overlay_container.visible = true
+		overlay_container_label.text = "ERROR: " + str(result) + "-" + str(response_code)
+		results_label.text = ""
+
+		return
+
+	var response = parse_json(body.get_string_from_utf8())
+
+	load_palettes(response)
+
+
 func _on_button_group_filter_type_pressed():
 	var pressed_button = button_group_filter_type.get_pressed_button()
 
@@ -355,7 +488,9 @@ func _on_button_group_filter_type_pressed():
 
 	current_pressed_filter_type_button = pressed_button
 
+	query_params.page = 0
 	query_params.filter_type = current_pressed_filter_type_button.name.to_lower()
+
 	slider_line_edit.emit_signal("text_entered", slider_line_edit.text)
 
 	make_http_call()
@@ -369,6 +504,7 @@ func _on_button_group_sort_pressed():
 
 	current_pressed_sort_button = pressed_button
 
+	query_params.page = 0
 	query_params.sorting_type = current_pressed_sort_button.name.to_lower()
 
 	make_http_call()
@@ -382,6 +518,8 @@ func _on_slider_value_changed(value):
 
 func _on_slider_line_edit_text_entered(new_text):
 	slider.value = int(new_text)
+
+	query_params.page = 0
 
 
 func _on_search_by_tag_line_edit_text_entered(new_text):
@@ -398,6 +536,7 @@ func _on_search_by_tag_line_edit_text_entered(new_text):
 	make_http_call()
 
 
+# Callback for when clicking the "X" in the tags line edit.
 func _on_search_by_tag_line_edit_text_changed(new_text):
 	if not new_text:
 		query_params.tag = new_text
@@ -455,18 +594,69 @@ func _set_current_download_path(new_value) -> void:
 			item.current_download_path = current_download_path
 
 
-func _check_connection_completed(result, response_code, headers, body):
-	print("check connection")
-	print(result)
-	print(response_code)
+func _on_check_connection_completed(result, response_code, headers, body):
+#	result = 1
+#	response_code = 1
+
+	var f = File.new()
+
 	if result != 0 and response_code != 200:
-		print("No internet connection!")
+		print("No Internet connection!")
+
+		if not f.file_exists("user://local_palettes.json"):
+			overlay_container.visible = true
+			overlay_container_label.text = "ERROR!\nNo Internet connection and no local palettes JSON."
+		else:
+			print("Load local palettes")
+			f.open("user://local_palettes.json", File.READ)
+			data = parse_json(f.get_as_text())
+			f.close()
+
+			http_call_local = true
+			make_http_call()
+
 		return
 
-	var response = body.get_string_from_utf8()
+	print("Internet connection! :D")
+
+	if not f.file_exists("user://local_palettes.json"):
+		print("No local palettes! Download palettes!")
+		download_palettes()
+		return
+	else:
+		var current_date = OS.get_datetime(true)
+		var local_palettes_date = OS.get_datetime_from_unix_time(
+			f.get_modified_time("user://local_palettes.json")
+		)
+
+		if (
+			(current_date.day > local_palettes_date.day)
+			and (current_date.hour > 11 and current_date.minute > 15)
+		):
+			print("Download new palettes")
+			download_palettes()
+			return
+		else:
+			print("Load local palettes")
+			f.open("user://local_palettes.json", File.READ)
+			data = parse_json(f.get_as_text())
+			f.close()
+
+	http_call_local = true
+	make_http_call()
+
+
+func _on_palettes_request_completed(result, response_code, headers, body):
+	if result != 0 and response_code != 200:
+		overlay_container.visible = true
+		overlay_container_label.text = "ERROR: " + str(result) + "-" + str(response_code)
+		results_label.text = ""
+
+		return
+
 	var f = File.new()
 	f.open("user://local_palettes.json", File.WRITE)
-	f.store_string(response)
+	f.store_string(body.get_string_from_utf8())
 	f.close()
 
-	make_http_call()
+	get_tree().reload_current_scene()

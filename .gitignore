@@ -10,6 +10,10 @@ data_*/
 
 *.DS_Store
 
+.env
+
 addons/*
 !addons/lospec_palette_list
+
 builds/
+export_templates/

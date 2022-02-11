@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# This is an environment variables example file.
+# To use it, add a dot '.' at the beginning of this file.
+# (e.g. ".env")
+
+# Absolute path to the project's folder.
+ENV_PROJECT_DIR=""
+# Relative path from "ENV_PROJECT_DIR" to the folder to store the builds.
+# (e.g "builds")
+ENV_BUILDS_DIR=""
+# Relative path from "ENV_PROJECT_DIR" to the export templates' folder.
+# (e.g "export_templates")
+ENV_EXPORT_TEMPLATES_DIR=""
+# Export template file.
+# (e.g. "godot_server.osx.opt.tools.64")
+ENV_EXPORT_TEMPLATE_FILE=""

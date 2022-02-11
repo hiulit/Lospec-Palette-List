@@ -20,7 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot Plugin Lospec"
+config/name="Lospec Palette List"
+config/description="Browse through thousands of awesome Lospec palettes."
 run/main_scene="res://app/app.tscn"
 boot_splash/image="res://splash.png"
 boot_splash/fullsize=false

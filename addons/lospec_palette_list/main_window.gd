@@ -662,4 +662,7 @@ func _on_palettes_request_completed(result, response_code, headers, body):
 	f.store_string(body.get_string_from_utf8())
 	f.close()
 
-	get_tree().reload_current_scene()
+	data = parse_json(body.get_string_from_utf8())
+
+	http_call_local = true
+	make_http_call()

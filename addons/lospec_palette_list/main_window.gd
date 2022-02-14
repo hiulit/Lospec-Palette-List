@@ -27,7 +27,7 @@ var total_count
 var max_pages
 var items_per_page
 
-var base_color_rect_size = 8
+var base_color_rect_size = 16
 
 var http_call_local := false
 var data: Dictionary

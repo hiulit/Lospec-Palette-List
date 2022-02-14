@@ -5,8 +5,9 @@ const main_panel = preload("res://addons/lospec_palette_list/main_window.tscn")
 
 var main_panel_instance
 
+
 func _enter_tree():
-	main_panel_instance = main_panel.instance() 
+	main_panel_instance = main_panel.instance()
 
 	get_editor_interface().get_editor_viewport().add_child(main_panel_instance)
 
@@ -20,6 +21,7 @@ func _exit_tree():
 
 func has_main_screen():
 	return true
+
 
 func make_visible(visible):
 	if main_panel_instance:

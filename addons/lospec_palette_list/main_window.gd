@@ -563,19 +563,13 @@ func _set_current_download_path(new_value) -> void:
 
 
 func _on_check_connection_completed(result, response_code, headers, body):
-#	result = 1
-#	response_code = 1
-
 	var f = File.new()
 
 	if result != 0 and response_code != 200:
-		print("No Internet connection!")
-
 		if not f.file_exists(local_palettes_file):
 			overlay_container.visible = true
 			overlay_container_label.text = "ERROR!\nNo Internet connection and no local palettes JSON."
 		else:
-			print("Load local palettes")
 			f.open(local_palettes_file, File.READ)
 			data = parse_json(f.get_as_text())
 			f.close()
@@ -585,10 +579,7 @@ func _on_check_connection_completed(result, response_code, headers, body):
 
 		return
 
-	print("Internet connection! :D")
-
 	if not f.file_exists(local_palettes_file):
-		print("No local palettes! Download palettes!")
 		download_palettes()
 		return
 	else:
@@ -601,11 +592,9 @@ func _on_check_connection_completed(result, response_code, headers, body):
 			(current_date.day > local_palettes_date.day)
 			and (current_date.hour > 11 and current_date.minute > 15)
 		):
-			print("Download new palettes")
 			download_palettes()
 			return
 		else:
-			print("Load local palettes")
 			f.open(local_palettes_file, File.READ)
 			data = parse_json(f.get_as_text())
 			f.close()

@@ -105,26 +105,29 @@ func _ready():
 	self.current_download_path = config_get("settings", "download_path")
 
 	filter_type_buttons_container.get_child(0).pressed = true
-#	filter_type_buttons_container.get_child(0).emit_signal("pressed")
 	sorting_buttons_container.get_child(0).pressed = true
 
 	slider_line_edit.text = str(query_params.number)
 	slider.value = query_params.number
 
-	results_label.text = "0 results"
+	results_label.text = ""
 
-	overlay_container.visible = false
+	previous_button.disabled = true
+	next_button.disabled = true
+
+	overlay_container.visible = true
+	overlay_container_label.text = "Loading..."
+	results_label.text = ""
 
 	var check_connection = HTTPRequest.new()
 	add_child(check_connection)
 	check_connection.connect("request_completed", self, "_on_check_connection_completed")
 	var error = check_connection.request("https://example.com")
 	if error != OK:
-		print("An error occurred in the HTTP request - ", error)
+		overlay_container.visible = true
+		overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
+		results_label.text = ""
 		return
-	overlay_container.visible = true
-	overlay_container_label.text = "Loading..."
-	results_label.text = ""
 
 
 func config_create() -> void:
@@ -138,7 +141,10 @@ func config_create() -> void:
 func config_get(section: String, key: String) -> String:
 	var error = config.load(config_file)
 	if error != OK:
-		push_error("ERROR: Couldn't load the config file!")
+		overlay_container.visible = true
+		overlay_container_label.text = "ERROR: Couldn't load the config file!"
+		results_label.text = ""
+		return ""
 
 	return config.get_value("settings", "download_path")
 
@@ -146,7 +152,10 @@ func config_get(section: String, key: String) -> String:
 func config_set(section: String, key: String, value: String) -> void:
 	var error = config.load(config_file)
 	if error != OK:
-		push_error("ERROR: Couldn't load the config file!")
+		overlay_container.visible = true
+		overlay_container_label.text = "ERROR: Couldn't load the config file!"
+		results_label.text = ""
+		return
 
 	config.set_value(section, key, value)
 	config.save(config_file)
@@ -179,8 +188,6 @@ func make_http_call():
 		var result := {"palettes": data.palettes, "totalCount": data.palettes.size()}
 
 		match query_params.filter_type:
-#			"any":
-#				result.palettes = data.palettes
 			"max":
 				var filtered_palettes := []
 
@@ -207,8 +214,6 @@ func make_http_call():
 				result.palettes = filtered_palettes
 
 		match query_params.sorting_type:
-#			"default":
-#				result.palettes = data.palettes
 			"alphabetical":
 				var filtered_palettes = result.palettes.duplicate()
 				filtered_palettes.sort_custom(Sort, "alphabetical")
@@ -225,6 +230,7 @@ func make_http_call():
 		if query_params.tag:
 			var tags := []
 			var tags_split = query_params.tag.split(",")
+
 			for tag in tags_split:
 				if tag:
 					tag = tag.strip_edges().replace("%20", "")
@@ -241,12 +247,7 @@ func make_http_call():
 		for child in grid_container.get_children():
 			child.queue_free()
 
-#		overlay_container.visible = true
-#		overlay_container_label.text = "Loading..."
-#		results_label.text = ""
-
 		load_palettes(result)
-#		http_request.emit_signal("request_completed", 0, 200, "", result)
 	else:
 		if http_request.get_http_client_status() != 0:
 			http_request.cancel_request()
@@ -265,12 +266,10 @@ func make_http_call():
 			print(url)
 
 		var error = http_request.request(url)
-
 		if error != OK:
 			overlay_container.visible = true
 			overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
 			results_label.text = ""
-
 			return
 
 
@@ -289,7 +288,6 @@ func download_palettes():
 		overlay_container.visible = true
 		overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
 		results_label.text = ""
-
 		return
 
 
@@ -301,10 +299,9 @@ func load_palettes(response: Dictionary):
 		return
 
 	if not response.palettes:
-		results_label.text = "No results!"
-
 		overlay_container.visible = true
 		overlay_container_label.text = "No results!"
+		results_label.text = ""
 
 		previous_button.disabled = true
 		next_button.disabled = true
@@ -444,7 +441,6 @@ func _on_http_request_completed(result, response_code, headers, body):
 		overlay_container.visible = true
 		overlay_container_label.text = "ERROR: " + str(result) + "-" + str(response_code)
 		results_label.text = ""
-
 		return
 
 	var response = parse_json(body.get_string_from_utf8())
@@ -623,7 +619,6 @@ func _on_palettes_request_completed(result, response_code, headers, body):
 		overlay_container.visible = true
 		overlay_container_label.text = "ERROR: " + str(result) + "-" + str(response_code)
 		results_label.text = ""
-
 		return
 
 	var f = File.new()

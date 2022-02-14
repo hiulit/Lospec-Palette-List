@@ -118,4 +118,8 @@ for i in "${!EXPORT_PLATFORMS[@]}"; do
   fi
   
   rm -rf "$TMP_DIR"
+
 done
+
+echo
+echo "Finished!"

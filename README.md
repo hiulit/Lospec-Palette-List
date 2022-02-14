@@ -1,15 +1,21 @@
 # Godot Plugin Lospec
 
-Browse through thousands of awesome [Lospec palettes](https://lospec.com/palette-list) right inside the Godot editor.
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/hiulit/Godot-Plugin-Lospec?color=478cbf&style=flat-square) ![MIT license](https://img.shields.io/badge/license-MIT-478cbf?style=flat-square)
+
+Browse through thousands of awesome [Lospec palettes](https://lospec.com/palette-list).
 
 Made for the [Godot Add-on Jam #1](https://itch.io/jam/godot-addons-jam-1).
 
-![Godot PLugin Lospec banner](/godot-plugin-lospec-banner.jpg)
+It's a cross-platform [stand-alone app](https://github.com/hiulit/Godot-Plugin-Lospec/releases), too!
+
+![Godot PLugin Lospec app](/godot-plugin-lospec-app.png)
 
 ## 📌 Features:
 
-- Copy palettes into the clipboard as an array.
-- Download palettes as an image.
+- **Copy** palettes into the clipboard as an array.
+- **Download** palettes as an image.
+- Support for [Sprite Editor](https://github.com/SoloCodeNet/godot-sprite-editor-addon). If the plugin is installed, a new **Open in Sprite Editor** item will appear in the **Download** menu.
+- **Offline** support.
 
 ## 🛠️ Installation
 
@@ -17,7 +23,6 @@ Made for the [Godot Add-on Jam #1](https://itch.io/jam/godot-addons-jam-1).
 - Copy the `addons/lospec_palette_list` folder to the `addons` folders in your project.
 - Enable the plugin by going to `Project > Project Settings > Plugins > Lospec Palette List > Enable`.
 - A new tab called "Lospec Palette List" will appear at the top of the editor, next to "2D, 3D, Scripts, AssetLib".
-
 
 ## 🗒️ Changelog
 

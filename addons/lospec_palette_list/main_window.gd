@@ -170,40 +170,6 @@ func set_url():
 	url = base_url + query_string
 
 
-func sort_alphabetical(a, b):
-	if a.title < b.title:
-		return true
-	return false
-
-
-func sort_downloads(a, b):
-	if int(a.downloads) > int(b.downloads):
-		return true
-	return false
-
-
-func sort_newest(a, b):
-	if a.createdAt > b.createdAt:
-		return true
-	return false
-
-
-func filter_every(base_array: Array, filter_key: String, filter_array: Array):
-	var filtered_array = []
-
-	for base_item in base_array:
-		var count = 0
-
-		for filter_item in filter_array:
-			if filter_item in base_item[filter_key]:
-				count += 1
-
-		if count == filter_array.size():
-			filtered_array.append(base_item)
-
-	return filtered_array
-
-
 func make_http_call():
 	scroll_container.scroll_vertical = 0
 
@@ -243,15 +209,15 @@ func make_http_call():
 #				result.palettes = data.palettes
 			"alphabetical":
 				var filtered_palettes = result.palettes.duplicate()
-				filtered_palettes.sort_custom(self, "sort_alphabetical")
+				filtered_palettes.sort_custom(Sort, "alphabetical")
 				result.palettes = filtered_palettes
 			"downloads":
 				var filtered_palettes = result.palettes.duplicate()
-				filtered_palettes.sort_custom(self, "sort_downloads")
+				filtered_palettes.sort_custom(Sort, "downloads")
 				result.palettes = filtered_palettes
 			"newest":
 				var filtered_palettes = result.palettes.duplicate()
-				filtered_palettes.sort_custom(self, "sort_newest")
+				filtered_palettes.sort_custom(Sort, "newest")
 				result.palettes = filtered_palettes
 
 		if query_params.tag:
@@ -261,7 +227,8 @@ func make_http_call():
 				if tag:
 					tag = tag.strip_edges().replace("%20", "")
 					tags.append(tag)
-			result.palettes = filter_every(result.palettes, "tags", tags)
+
+			result.palettes = Filter.includes("every", result.palettes, tags, "tags")
 
 		result = {
 			"palettes":

@@ -30,7 +30,7 @@ func _ready():
 	main_window_instance.config_file = "user://app_settings.cfg"
 
 	main_window_instance.default_download_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
-	
+
 	main_window_instance.base_color_rect_size /= 2
 
 	add_child(main_window_instance)

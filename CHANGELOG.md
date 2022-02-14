@@ -4,6 +4,15 @@
 
 - Up to date
 
+## [1.2.0] - 2022-02-14
+
+### Added
+
+- Support for [SoloCodeNet](https://github.com/SoloCodeNet)'s [Sprite Editor](https://github.com/SoloCodeNet/godot-sprite-editor-addon). If the plugin is installed, a new **Open in Sprite Editor** item will appear in the **Download** menu.
+- Offline support.
+- Responsive columns.
+- Boot splash screen.
+
 ## [1.1.0] - 2022-02-04
 
 ### Added

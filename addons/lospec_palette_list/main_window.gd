@@ -4,6 +4,8 @@ extends Control
 var config := ConfigFile.new()
 var config_file := "user://plugin_settings.cfg"
 
+var local_palettes_file = "user://local_palettes.json"
+
 var base_url := "https://lospec-api.vercel.app/api"
 
 var query_params := {
@@ -573,12 +575,12 @@ func _on_check_connection_completed(result, response_code, headers, body):
 	if result != 0 and response_code != 200:
 		print("No Internet connection!")
 
-		if not f.file_exists("user://local_palettes.json"):
+		if not f.file_exists(local_palettes_file):
 			overlay_container.visible = true
 			overlay_container_label.text = "ERROR!\nNo Internet connection and no local palettes JSON."
 		else:
 			print("Load local palettes")
-			f.open("user://local_palettes.json", File.READ)
+			f.open(local_palettes_file, File.READ)
 			data = parse_json(f.get_as_text())
 			f.close()
 
@@ -589,14 +591,14 @@ func _on_check_connection_completed(result, response_code, headers, body):
 
 	print("Internet connection! :D")
 
-	if not f.file_exists("user://local_palettes.json"):
+	if not f.file_exists(local_palettes_file):
 		print("No local palettes! Download palettes!")
 		download_palettes()
 		return
 	else:
 		var current_date = OS.get_datetime(true)
 		var local_palettes_date = OS.get_datetime_from_unix_time(
-			f.get_modified_time("user://local_palettes.json")
+			f.get_modified_time(local_palettes_file)
 		)
 
 		if (
@@ -608,7 +610,7 @@ func _on_check_connection_completed(result, response_code, headers, body):
 			return
 		else:
 			print("Load local palettes")
-			f.open("user://local_palettes.json", File.READ)
+			f.open(local_palettes_file, File.READ)
 			data = parse_json(f.get_as_text())
 			f.close()
 
@@ -625,7 +627,7 @@ func _on_palettes_request_completed(result, response_code, headers, body):
 		return
 
 	var f = File.new()
-	f.open("user://local_palettes.json", File.WRITE)
+	f.open(local_palettes_file, File.WRITE)
 	f.store_string(body.get_string_from_utf8())
 	f.close()
 

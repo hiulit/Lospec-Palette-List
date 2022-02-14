@@ -457,6 +457,9 @@ func editing_slider(new_value):
 func _on_main_window_resized():
 	var window_size = rect_size
 
+	if Engine.editor_hint:
+		window_size /= 2
+
 	if window_size.x < 768:
 		grid_container.columns = 1
 	elif window_size.x < 1280:

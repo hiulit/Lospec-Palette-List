@@ -9,13 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Filter",
+"language": "GDScript",
+"path": "res://addons/lospec_palette_list/classes/filter.gd"
+}, {
 "base": "Container",
 "class": "HFlowContainer",
 "language": "GDScript",
 "path": "res://addons/lospec_palette_list/h_flow_container/h_flow_container.gd"
+}, {
+"base": "Node",
+"class": "Sort",
+"language": "GDScript",
+"path": "res://addons/lospec_palette_list/classes/sort.gd"
 } ]
 _global_script_class_icons={
-"HFlowContainer": ""
+"Filter": "",
+"HFlowContainer": "",
+"Sort": ""
 }
 
 [application]

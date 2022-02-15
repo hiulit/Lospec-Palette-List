@@ -35,6 +35,7 @@ _global_script_class_icons={
 config/name="Lospec Palette List"
 config/description="Browse through thousands of awesome Lospec palettes."
 run/main_scene="res://app/app.tscn"
+run/low_processor_mode=true
 boot_splash/image="res://splash.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.2, 0.231373, 0.309804, 1 )

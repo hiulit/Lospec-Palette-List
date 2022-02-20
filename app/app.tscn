@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://app/app.gd" type="Script" id=1]
 [ext_resource path="res://app/theme/main_theme.tres" type="Theme" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
 
 [node name="App" type="Control"]
 anchor_right = 1.0
@@ -20,3 +21,59 @@ color = Color( 0.2, 0.231373, 0.309804, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AboutDialog" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -238.0
+margin_top = -142.0
+margin_right = 238.0
+margin_bottom = 142.0
+rect_min_size = Vector2( 476, 284 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AboutDialog/VBoxContainer"]
+margin_top = 71.0
+margin_right = 476.0
+margin_bottom = 151.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="AboutDialog/VBoxContainer/HBoxContainer"]
+margin_left = 198.0
+margin_right = 278.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Margin20" type="MarginContainer" parent="AboutDialog/VBoxContainer"]
+margin_top = 151.0
+margin_right = 476.0
+margin_bottom = 171.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="Label" type="Label" parent="AboutDialog/VBoxContainer"]
+margin_top = 171.0
+margin_right = 476.0
+margin_bottom = 203.0
+text = "Text"
+align = 1
+valign = 1
+
+[node name="Margin10" type="MarginContainer" parent="AboutDialog/VBoxContainer"]
+margin_top = 203.0
+margin_right = 476.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 0, 10 )

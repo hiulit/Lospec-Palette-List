@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/godot-plugin-lospec-banner.jpg-f0b093bbf592daa91528969f6cf22b12.stex"
+path="res://.import/lospec-palette-list-app.png-3b1b7a2e42976016d7fe4f7b5dfd50ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://godot-plugin-lospec-banner.jpg"
-dest_files=[ "res://.import/godot-plugin-lospec-banner.jpg-f0b093bbf592daa91528969f6cf22b12.stex" ]
+source_file="res://lospec-palette-list-app.png"
+dest_files=[ "res://.import/lospec-palette-list-app.png-3b1b7a2e42976016d7fe4f7b5dfd50ae.stex" ]
 
 [params]
 

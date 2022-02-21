@@ -587,10 +587,19 @@ func _on_check_connection_completed(result, response_code, headers, body):
 		var local_palettes_date = OS.get_datetime_from_unix_time(
 			f.get_modified_time(local_palettes_file)
 		)
+		var current_date_int = (
+			current_date.year +
+			current_date.month +
+			current_date.day
+		)
+		var local_palettes_date_int = (
+			local_palettes_date.year +
+			local_palettes_date.month +
+			local_palettes_date.day
+		)
 
-		if (
-			(current_date.day > local_palettes_date.day)
-			and (current_date.hour > 11 and current_date.minute > 15)
+		if (current_date_int - local_palettes_date_int >= 2
+			or current_date_int - local_palettes_date_int <= 1 and current_date.hour > 11
 		):
 			download_palettes()
 			return

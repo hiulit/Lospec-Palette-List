@@ -31,9 +31,10 @@ func _ready():
 	download_popup = download_menu_button.get_popup()
 	download_popup.clear()
 
-	var d = Directory.new()
-	if d.dir_exists("res://addons/pixel_ever"):
-		download_popup.add_item("Open in Sprite Editor")
+	if Engine.editor_hint:
+		var d = Directory.new()
+		if d.dir_exists("res://addons/pixel_ever"):
+			download_popup.add_item("Open in Sprite Editor")
 
 	for size in palette_image_sizes:
 		download_popup.add_item("PNG Image (%sx)" % str(size))

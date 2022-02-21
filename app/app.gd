@@ -18,11 +18,16 @@ var main_window_instance: Node
 
 onready var main_window := preload("res://addons/lospec_palette_list/main_window.tscn")
 
-onready var about_dialog := $AboutDialog
-onready var about_dialog_label := $AboutDialog/VBoxContainer/Label
+onready var about_dialog_background := $AboutDialogLayer/AboutDialogBackground
+onready var about_dialog := $AboutDialogLayer/AboutDialogBackground/AboutDialog
+onready var about_dialog_label := $AboutDialogLayer/AboutDialogBackground/AboutDialog/VBoxContainer/Label
 
 
 func _ready():
+	var error = about_dialog.connect("popup_hide", self, "_on_about_dialog_hidden")
+	if error != OK:
+		push_error("Couldn't connect signal!")
+
 	OS.set_window_title(app.name)
 
 	if OS.get_name() == "OSX" or OS.get_name() == "Windows":
@@ -36,6 +41,8 @@ func _ready():
 		OS.set_window_size(Vector2(window.width * 2, window.height * 2))
 
 		OS.center_window()
+
+	about_dialog_background.visible = false
 
 	about_dialog.window_title = "About"
 	about_dialog_label.text = "%s v%s" % [app.name, app.version]
@@ -58,4 +65,9 @@ func _ready():
 
 func _notification(what):
 	if what == NOTIFICATION_WM_ABOUT:
+		about_dialog_background.visible = true
 		about_dialog.call_deferred("popup")
+
+
+func _on_about_dialog_hidden():
+	about_dialog_background.visible = false

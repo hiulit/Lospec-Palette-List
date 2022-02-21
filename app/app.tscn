@@ -22,7 +22,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AboutDialog" type="AcceptDialog" parent="."]
+[node name="AboutDialogLayer" type="CanvasLayer" parent="."]
+
+[node name="AboutDialogBackground" type="ColorRect" parent="AboutDialogLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+color = Color( 0, 0, 0, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutDialog" type="AcceptDialog" parent="AboutDialogLayer/AboutDialogBackground"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -36,21 +48,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AboutDialog"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutDialogLayer/AboutDialogBackground/AboutDialog"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -52.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AboutDialog/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="AboutDialogLayer/AboutDialogBackground/AboutDialog/VBoxContainer"]
 margin_top = 71.0
 margin_right = 476.0
 margin_bottom = 151.0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="AboutDialog/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="AboutDialogLayer/AboutDialogBackground/AboutDialog/VBoxContainer/HBoxContainer"]
 margin_left = 198.0
 margin_right = 278.0
 margin_bottom = 80.0
@@ -58,13 +74,13 @@ rect_min_size = Vector2( 80, 80 )
 texture = ExtResource( 3 )
 expand = true
 
-[node name="Margin20" type="MarginContainer" parent="AboutDialog/VBoxContainer"]
+[node name="Margin20" type="MarginContainer" parent="AboutDialogLayer/AboutDialogBackground/AboutDialog/VBoxContainer"]
 margin_top = 151.0
 margin_right = 476.0
 margin_bottom = 171.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="Label" type="Label" parent="AboutDialog/VBoxContainer"]
+[node name="Label" type="Label" parent="AboutDialogLayer/AboutDialogBackground/AboutDialog/VBoxContainer"]
 margin_top = 171.0
 margin_right = 476.0
 margin_bottom = 203.0
@@ -72,7 +88,7 @@ text = "Text"
 align = 1
 valign = 1
 
-[node name="Margin10" type="MarginContainer" parent="AboutDialog/VBoxContainer"]
+[node name="Margin10" type="MarginContainer" parent="AboutDialogLayer/AboutDialogBackground/AboutDialog/VBoxContainer"]
 margin_top = 203.0
 margin_right = 476.0
 margin_bottom = 213.0

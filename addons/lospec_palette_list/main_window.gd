@@ -599,7 +599,7 @@ func _on_check_connection_completed(result, response_code, headers, body):
 		)
 
 		if (current_date_int - local_palettes_date_int >= 2
-			or current_date_int - local_palettes_date_int <= 1 and current_date.hour > 11
+			or current_date_int - local_palettes_date_int == 1 and current_date.hour > 11
 		):
 			download_palettes()
 			return

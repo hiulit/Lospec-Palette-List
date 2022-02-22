@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/lospec_palette_list/components/color_selector_container/color_selector_container.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/lospec_palette_list/components/search_and_sort_container/search_and_sort_container.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://addons/lospec_palette_list/main_window.gd" type="Script" id=7]
 [ext_resource path="res://addons/lospec_palette_list/resources/button_group_filter_type.tres" type="ButtonGroup" id=8]
 [ext_resource path="res://addons/lospec_palette_list/resources/button_group_sort.tres" type="ButtonGroup" id=9]
+[ext_resource path="res://addons/lospec_palette_list/components/dialogs/about_dialog.tscn" type="PackedScene" id=10]
+[ext_resource path="res://addons/lospec_palette_list/components/dialogs/download_path_file_dialog.tscn" type="PackedScene" id=11]
 
 [node name="MainWindow" type="Control"]
 anchor_right = 1.0
@@ -83,7 +85,6 @@ margin_left = 482.0
 margin_right = 502.0
 
 [node name="SliderContainer" parent="MainContainer/ColorSelectorContainer/HBoxContainer" index="2"]
-anchor_right = 0.0
 margin_left = 506.0
 margin_right = 984.0
 
@@ -173,7 +174,7 @@ margin_bottom = 24.0
 margin_top = 5.0
 margin_right = 89.0
 margin_bottom = 19.0
-text = "2118 results"
+text = "2142 results"
 
 [node name="Margin20" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer" index="1"]
 margin_left = 93.0
@@ -215,10 +216,6 @@ text = "res://"
 margin_left = 403.0
 margin_right = 478.0
 
-[node name="DownloadPathFileDialog" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/DownloadPathContainer" index="3"]
-margin_left = 244.0
-margin_right = 660.0
-
 [node name="Margin10" type="MarginContainer" parent="MainContainer/ResultsAndDowloadPathContainer"]
 margin_top = 28.0
 margin_right = 984.0
@@ -251,9 +248,52 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="MainContainer/PalettesContainer/ScrollContainer"]
 margin_right = 972.0
-margin_bottom = 3282.0
+margin_bottom = 3684.0
 size_flags_horizontal = 3
 columns = 2
+
+[node name="AboutButton" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -50.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 20.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+text = "About"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogLayer" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBackground" type="ColorRect" parent="DialogLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AboutDialog" parent="DialogLayer" instance=ExtResource( 10 )]
+window_title = ""
+
+[node name="DownloadPathFileDialog" parent="DialogLayer" instance=ExtResource( 11 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 274.0
+margin_top = 242.0
+margin_right = 750.0
+margin_bottom = 526.0
 
 [editable path="MainContainer/ColorSelectorContainer"]
 [editable path="MainContainer/ColorSelectorContainer/HBoxContainer/FilterTypeButtonsContainer"]

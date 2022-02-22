@@ -1,6 +1,15 @@
 tool
 extends Control
 
+var project_settings := {
+	"name": ProjectSettings.get_setting("application/config/name"),
+	"description": ProjectSettings.get_setting("application/config/description"),
+	"version": ProjectSettings.get_setting("application/config/version"),
+	"author": ProjectSettings.get_setting("application/config/author"),
+	"license": ProjectSettings.get_setting("application/config/license"),
+	"repository": ProjectSettings.get_setting("application/config/repository"),
+}
+
 var config := ConfigFile.new()
 var config_file := "user://plugin_settings.cfg"
 
@@ -46,8 +55,12 @@ onready var palette_item_container := preload(
 	"res://addons/lospec_palette_list/components/palette_item_container/palette_item_container.tscn"
 )
 
+onready var about_button := $AboutButton
+onready var about_dialog := $DialogLayer/AboutDialog
+onready var about_dialog_label := $DialogLayer/AboutDialog/AboutDialogContainer/VBoxContainer/Label
+onready var dialog_layer := $DialogLayer
 onready var download_path_button := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/DownloadPathContainer/DownloadPathButton
-onready var download_path_file_dialog := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/DownloadPathContainer/DownloadPathFileDialog
+onready var download_path_file_dialog := $DialogLayer/DownloadPathFileDialog
 onready var download_path_line_edit := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/DownloadPathContainer/DownloadPathLineEdit
 onready var filter_type_buttons_container := $MainContainer/ColorSelectorContainer/HBoxContainer/FilterTypeButtonsContainer
 onready var grid_container := $MainContainer/PalettesContainer/ScrollContainer/GridContainer
@@ -98,14 +111,28 @@ func _ready():
 		"dir_selected", self, "on_download_path_file_dialog_dir_selected"
 	)
 
+	for dialog in get_tree().get_nodes_in_group("dialogs"):
+		dialog.connect("about_to_show", self, "_on_dialog_about_to_show")
+		dialog.connect("popup_hide", self, "_on_dialog_popup_hide")
+
+	about_button.connect("pressed", self, "_on_about_button_pressed")
+
 	# Create config file.
 	config_create()
 
 	# Set initial values.
+	dialog_layer.visible = false
+
+	about_dialog.window_title = ""
+	about_dialog_label.text = "%s v%s" % [project_settings.name, project_settings.version]
+	about_dialog_label.text += "\n© 2022 %s" % project_settings.author
+	about_dialog_label.text += "\n"
+	about_dialog_label.text += "\nSource code:\n%s License\n%s" % [project_settings.license, project_settings.repository]
+
 	self.current_download_path = config_get("settings", "download_path")
 
-	filter_type_buttons_container.get_child(0).pressed = true
-	sorting_buttons_container.get_child(0).pressed = true
+#	filter_type_buttons_container.get_child(0).pressed = true
+#	sorting_buttons_container.get_child(0).pressed = true
 
 	slider_line_edit.text = str(query_params.number)
 	slider.value = query_params.number
@@ -628,3 +655,15 @@ func _on_palettes_request_completed(result, response_code, headers, body):
 
 	http_call_local = true
 	make_http_call()
+
+
+func _on_about_button_pressed():
+	about_dialog.popup_centered()
+
+
+func _on_dialog_about_to_show():
+	dialog_layer.visible = true
+
+
+func _on_dialog_popup_hide():
+	dialog_layer.visible = false

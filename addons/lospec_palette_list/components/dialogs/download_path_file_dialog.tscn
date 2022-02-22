@@ -1,0 +1,14 @@
+[gd_scene format=2]
+
+[node name="DownloadPathFileDialog" type="FileDialog" groups=["dialogs"]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -208.0
+margin_top = -92.0
+margin_right = 208.0
+margin_bottom = 92.0
+rect_min_size = Vector2( 476, 284 )
+window_title = "Open a Directory"
+mode = 2

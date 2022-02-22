@@ -30,11 +30,3 @@ text = "Choose"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="DownloadPathFileDialog" type="FileDialog" parent="."]
-margin_left = 608.0
-margin_right = 1024.0
-margin_bottom = 184.0
-rect_min_size = Vector2( 400, 140 )
-window_title = "Open a Directory"
-mode = 2

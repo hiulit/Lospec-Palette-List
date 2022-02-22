@@ -44,6 +44,9 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 20, 0 )
 
 [node name="SliderContainer" parent="HBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_left = 526.0
+margin_right = 1024.0
 
 [node name="Margin20" type="MarginContainer" parent="."]
 margin_top = 60.0

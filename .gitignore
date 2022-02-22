@@ -16,5 +16,5 @@ addons/*
 !addons/lospec_palette_list
 
 builds/
-export_templates/
+export_binaries/
 tests/

@@ -4,6 +4,12 @@
 
 - Up to date
 
+## [1.3.0] - 2022-02-XX
+
+### Added
+
+- "About" dialog.
+
 ## [1.2.0] - 2022-02-14
 
 ### Added

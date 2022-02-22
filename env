@@ -9,9 +9,16 @@ ENV_PROJECT_DIR=""
 # Relative path from "ENV_PROJECT_DIR" to the folder to store the builds.
 # (e.g "builds")
 ENV_BUILDS_DIR=""
-# Relative path from "ENV_PROJECT_DIR" to the export templates' folder.
-# (e.g "export_templates")
-ENV_EXPORT_TEMPLATES_DIR=""
-# Export template file.
-# (e.g. "godot_server.osx.opt.tools.64")
-ENV_EXPORT_TEMPLATE_FILE=""
+# Relative path from "ENV_PROJECT_DIR" to the export binaries' folder.
+# (e.g "export_binaries")
+ENV_EXPORT_BINARIES_DIR=""
+# Relative path from "ENV_EXPORT_BINARIES_DIR" to the Godot headless binary.
+# (e.g. "godot_headless/godot.headless.opt.tools.64")
+ENV_GODOT_HEADLESS_BINARY=""
+# Relative path from "ENV_EXPORT_BINARIES_DIR" to the Raspberry Pi 32/64 bits export template binary.
+# (e.g. "export_templates/rpi4_32/godot_3.4.2_rpi4_export-template")
+ENV_RPI_32_EXPORT_TEMPLATE_BINARY=""
+ENV_RPI_64_EXPORT_TEMPLATE_BINARY=""
+# Relative path from "ENV_PROJECT_DIR" to the project's source code folder.
+# (e.g. "src")
+ENV_SOURCE_CODE_DIR=""

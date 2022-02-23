@@ -17,6 +17,42 @@ readonly GODOT_HEADLESS_BINARY="$EXPORT_BINARIES_DIR/$ENV_GODOT_HEADLESS_BINARY"
 readonly RPI_32_EXPORT_TEMPLATE_BINARY="$EXPORT_BINARIES_DIR/$ENV_RPI_32_EXPORT_TEMPLATE_BINARY"
 readonly RPI_64_EXPORT_TEMPLATE_BINARY="$EXPORT_BINARIES_DIR/$ENV_RPI_64_EXPORT_TEMPLATE_BINARY"
 
+readonly GODOT_TEMPLATES_VERSION="$ENV_GODOT_TEMPLATES_VERSION"
+readonly GODOT_TEMPLATES_FILE="Godot_v${GODOT_TEMPLATES_VERSION}-stable_export_templates.tpz"
+
+readonly OS="$(uname)"
+
+GODOT_TEMPLATES_DIR=""
+
+if [[ "$OS" == "Linux" ]]; then
+  GODOT_TEMPLATES_DIR="$HOME/.local/share/godot/templates/${GODOT_TEMPLATES_VERSION}.stable"
+elif [[ "$OS" == "Darwin" ]]; then
+  GODOT_TEMPLATES_DIR="$HOME/Library/Application Support/Godot/templates/${GODOT_TEMPLATES_VERSION}.stable"
+else
+  echo "ERROR: Supported OSes: 'Linux', 'Darwin'." >&2
+  exit 1
+fi
+
+if [[ ! -d "$GODOT_TEMPLATES_DIR" ]]; then
+  mkdir "$GODOT_TEMPLATES_DIR"
+
+  echo
+  echo "> Downloading Godot templates for v$GODOT_TEMPLATES_VERSION..."
+  echo
+  curl --progress-bar https://downloads.tuxfamily.org/godotengine/$GODOT_TEMPLATES_VERSION/$GODOT_TEMPLATES_FILE -o "$GODOT_TEMPLATES_DIR/$GODOT_TEMPLATES_FILE"
+  echo "Done!"
+
+  echo
+  echo "> Uncompressing '$GODOT_TEMPLATES_FILE'..."
+  tar -xzf "$GODOT_TEMPLATES_DIR/$GODOT_TEMPLATES_FILE" --strip-components=1 -C "$GODOT_TEMPLATES_DIR"
+  echo "Done!"
+  rm "$GODOT_TEMPLATES_DIR/$GODOT_TEMPLATES_FILE"
+
+  echo
+  echo "Godot templates for v$GODOT_TEMPLATES_VERSION installed successfully!"
+  echo
+fi
+
 PROJECT_NAME=""
 PROJECT_NAME_SNAKE_CASE=""
 PROJECT_NAME_INITIALS=""

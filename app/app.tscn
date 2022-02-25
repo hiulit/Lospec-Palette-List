@@ -16,7 +16,7 @@ __meta__ = {
 [node name="MainBackground" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.2, 0.231373, 0.309804, 1 )
+color = Color( 0.2, 0.184314, 0.207843, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

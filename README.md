@@ -21,23 +21,23 @@ It's a cross-platform [stand-alone app](https://github.com/hiulit/Lospec-Palette
 
 ## 🛠️ Installation
 
-### Godot Plugin
+### 🤖 Godot Plugin
 
 - Clone the repository or [download it](https://github.com/hiulit/Lospec-Palette-List/archive/refs/heads/main.zip) in a ZIP file.
 - Copy the `addons/lospec_palette_list` folder to the `addons` folders in your project.
 - Enable the plugin by going to `Project > Project Settings > Plugins > Lospec Palette List > Enable`.
 - A new tab called **Lospec Palette List** will appear at the top of the editor, next to "2D, 3D, Scripts, AssetLib".
 
-### App
+### 💾 App
 
 Download the [latest executables](https://github.com/hiulit/Lospec-Palette-List/releases).
 
 Available for:
 
-- Windows.
-- macOS.
-- Linux.
-- Raspberry Pi.
+- Windows 💻
+- macOS 🍏
+- Linux 🐧
+- Raspberry Pi 🍓
 
 ## 🗒️ Changelog
 

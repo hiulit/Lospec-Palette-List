@@ -32,6 +32,9 @@ func _ready():
 
 	add_child(main_window_instance)
 
+	main_window_instance.about_dialog_texture.rect_min_size /= 2
+	main_window_instance.about_dialog_text.rect_min_size.y /= 2
+	main_window_instance.about_dialog.rect_size = Vector2(window.width / 2, window.height / 2)
 	main_window_instance.download_path_file_dialog.access = 2
 
 

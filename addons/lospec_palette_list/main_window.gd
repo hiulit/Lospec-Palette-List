@@ -8,6 +8,8 @@ var project_settings := {
 	"author": ProjectSettings.get_setting("application/config/author"),
 	"license": ProjectSettings.get_setting("application/config/license"),
 	"repository": ProjectSettings.get_setting("application/config/repository"),
+	"width": ProjectSettings.get_setting("display/window/size/width"),
+	"height": ProjectSettings.get_setting("display/window/size/height"),
 }
 
 var config := ConfigFile.new()
@@ -55,9 +57,12 @@ onready var palette_item_container := preload(
 	"res://addons/lospec_palette_list/components/palette_item_container/palette_item_container.tscn"
 )
 
+onready var about_dialog_scene = preload("res://addons/lospec_palette_list/components/dialogs/about_dialog.tscn")
+onready var about_dialog
+onready var about_dialog_text
+onready var about_dialog_texture
+
 onready var about_button := $AboutButton
-onready var about_dialog := $DialogLayer/AboutDialog
-onready var about_dialog_label := $DialogLayer/AboutDialog/AboutDialogContainer/VBoxContainer/Label
 onready var dialog_layer := $DialogLayer
 onready var download_path_button := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/DownloadPathContainer/DownloadPathButton
 onready var download_path_file_dialog := $DialogLayer/DownloadPathFileDialog
@@ -78,6 +83,13 @@ onready var sorting_buttons_container := $MainContainer/SearchAndSortContainer/S
 
 
 func _ready():
+	# Add "About" dialog
+	about_dialog = about_dialog_scene.instance()
+	dialog_layer.add_child(about_dialog)
+	about_dialog_texture = about_dialog.get_node("AboutDialogContainer/TextureRect")
+	about_dialog_text = about_dialog.get_node("AboutDialogContainer/RichTextLabel")
+	about_dialog_text.connect("meta_clicked", self, "_on_about_dialog_meta_clicked")
+
 	# Connect signals.
 	connect("resized", self, "_on_main_window_resized")
 
@@ -124,15 +136,15 @@ func _ready():
 	dialog_layer.visible = false
 
 	about_dialog.window_title = ""
-	about_dialog_label.text = "%s v%s" % [project_settings.name, project_settings.version]
-	about_dialog_label.text += "\n© 2022 %s" % project_settings.author
-	about_dialog_label.text += "\n"
-	about_dialog_label.text += "\nSource code:\n%s License\n%s" % [project_settings.license, project_settings.repository]
+	about_dialog.rect_size = Vector2(project_settings.width, project_settings.height)
+	about_dialog_text.bbcode_text = "[center]%s v%s[/center]" % [project_settings.name, project_settings.version]
+	about_dialog_text.bbcode_text += "\n[center]© 2022 %s[/center]" % project_settings.author
+	about_dialog_text.bbcode_text += "\n"
+	about_dialog_text.bbcode_text += "\n[center]Source code:[/center]"
+	about_dialog_text.bbcode_text += "\n[center]%s License[/center]" % project_settings.license
+	about_dialog_text.bbcode_text += "\n[center][url]%s[/url][/center]" % project_settings.repository
 
 	self.current_download_path = config_get("settings", "download_path")
-
-#	filter_type_buttons_container.get_child(0).pressed = true
-#	sorting_buttons_container.get_child(0).pressed = true
 
 	slider_line_edit.text = str(query_params.number)
 	slider.value = query_params.number
@@ -667,3 +679,7 @@ func _on_dialog_about_to_show():
 
 func _on_dialog_popup_hide():
 	dialog_layer.visible = false
+
+
+func _on_about_dialog_meta_clicked(meta):
+	OS.shell_open(str(meta))

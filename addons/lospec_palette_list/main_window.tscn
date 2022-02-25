@@ -174,7 +174,7 @@ margin_bottom = 24.0
 margin_top = 5.0
 margin_right = 89.0
 margin_bottom = 19.0
-text = "2142 results"
+text = "2143 results"
 
 [node name="Margin20" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer" index="1"]
 margin_left = 93.0
@@ -248,7 +248,7 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="MainContainer/PalettesContainer/ScrollContainer"]
 margin_right = 972.0
-margin_bottom = 3684.0
+margin_bottom = 3658.0
 size_flags_horizontal = 3
 columns = 2
 
@@ -283,7 +283,8 @@ __meta__ = {
 }
 
 [node name="AboutDialog" parent="DialogLayer" instance=ExtResource( 10 )]
-window_title = ""
+margin_right = 768.0
+margin_bottom = 576.0
 
 [node name="DownloadPathFileDialog" parent="DialogLayer" instance=ExtResource( 11 )]
 anchor_left = 0.0

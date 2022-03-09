@@ -33,4 +33,4 @@ func get_plugin_name():
 
 
 func get_plugin_icon():
-	return preload("res://addons/lospec_palette_list/icon.svg")
+	return preload("res://addons/lospec_palette_list/LospecPaletteList.svg")

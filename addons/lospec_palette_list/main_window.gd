@@ -177,7 +177,7 @@ func config_create() -> void:
 		config.save(config_file)
 
 
-func config_get(section: String, key: String) -> String:
+func config_get(section: String, key: String):
 	var error = config.load(config_file)
 	if error != OK:
 		overlay_container.visible = true
@@ -185,10 +185,10 @@ func config_get(section: String, key: String) -> String:
 		results_label.text = ""
 		return ""
 
-	return config.get_value("settings", "download_path")
+	return config.get_value(section, key)
 
 
-func config_set(section: String, key: String, value: String) -> void:
+func config_set(section: String, key: String, value) -> void:
 	var error = config.load(config_file)
 	if error != OK:
 		overlay_container.visible = true

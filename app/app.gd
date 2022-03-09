@@ -10,7 +10,7 @@ var main_window_instance: Node
 onready var main_window := preload("res://addons/lospec_palette_list/main_window.tscn")
 
 func _ready():
-	if OS.get_name() == "OSX" or OS.get_name() == "Windows":
+	if OS.get_name() == "OSX":
 		get_tree().set_screen_stretch(
 			SceneTree.STRETCH_MODE_DISABLED,
 			SceneTree.STRETCH_ASPECT_IGNORE,

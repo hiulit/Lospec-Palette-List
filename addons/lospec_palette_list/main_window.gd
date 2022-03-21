@@ -62,7 +62,7 @@ onready var about_dialog
 onready var about_dialog_text
 onready var about_dialog_texture
 
-onready var about_button := $AboutButton
+onready var about_button := $ExtraButtonsContainer/AboutButton
 onready var dialog_layer := $DialogLayer
 onready var download_path_button := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/DownloadPathContainer/DownloadPathButton
 onready var download_path_file_dialog := $DialogLayer/DownloadPathFileDialog

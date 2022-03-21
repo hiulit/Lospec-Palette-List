@@ -18,9 +18,6 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -174,7 +171,7 @@ margin_bottom = 24.0
 margin_top = 5.0
 margin_right = 89.0
 margin_bottom = 19.0
-text = "2143 results"
+text = "2188 results"
 
 [node name="Margin20" parent="MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer" index="1"]
 margin_left = 93.0
@@ -248,18 +245,38 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="MainContainer/PalettesContainer/ScrollContainer"]
 margin_right = 972.0
-margin_bottom = 3658.0
+margin_bottom = 2966.0
 size_flags_horizontal = 3
 columns = 2
 
-[node name="AboutButton" type="Button" parent="."]
+[node name="ExtraButtonsContainer" type="HBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -50.0
+margin_left = -209.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 20.0
 grow_horizontal = 0
+alignment = 2
+
+[node name="DownloadPalettes" type="Button" parent="ExtraButtonsContainer"]
+visible = false
+margin_right = 131.0
+margin_bottom = 20.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+text = "Download palettes"
+
+[node name="Margin10" type="MarginContainer" parent="ExtraButtonsContainer"]
+margin_left = 135.0
+margin_right = 145.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="AboutButton" type="Button" parent="ExtraButtonsContainer"]
+margin_left = 149.0
+margin_right = 199.0
+margin_bottom = 20.0
 size_flags_horizontal = 8
 text = "About"
 __meta__ = {

@@ -638,6 +638,9 @@ func _on_check_connection_completed(result, response_code, headers, body):
 			download_palettes()
 			return
 		else:
+			if debug_mode:
+				print("Use local palettes")
+
 			f.open(local_palettes_file, File.READ)
 			data = parse_json(f.get_as_text())
 			f.close()

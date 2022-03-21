@@ -622,24 +622,19 @@ func _on_check_connection_completed(result, response_code, headers, body):
 		download_palettes()
 		return
 	else:
-		var current_date = OS.get_datetime(true)
-		var local_palettes_date = OS.get_datetime_from_unix_time(
-			f.get_modified_time(local_palettes_file)
-		)
-		var current_date_int = (
-			current_date.year +
-			current_date.month +
-			current_date.day
-		)
-		var local_palettes_date_int = (
-			local_palettes_date.year +
-			local_palettes_date.month +
-			local_palettes_date.day
-		)
+		var current_date = OS.get_unix_time_from_datetime(OS.get_datetime(true))
+		var local_palettes_date = f.get_modified_time(local_palettes_file)
 
-		if (current_date_int - local_palettes_date_int >= 2
-			or current_date_int - local_palettes_date_int == 1 and current_date.hour > 11
+		# - More than 2 days.
+		# - It's passed 11 UTC and local palettes are older than 13 hours.
+		# - It's passed 11 UTC and local palettes were downloaded before 11 UTC.
+		if (current_date - local_palettes_date >= 86400 * 2
+			or OS.get_datetime_from_unix_time(current_date).hour > 11 and current_date - local_palettes_date >= 46800
+			or OS.get_datetime_from_unix_time(current_date).hour > 11 and OS.get_datetime_from_unix_time(local_palettes_date).hour < 11
 		):
+			if debug_mode:
+				print("Download palettes")
+
 			download_palettes()
 			return
 		else:

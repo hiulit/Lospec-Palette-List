@@ -607,7 +607,7 @@ func _on_check_connection_completed(result, response_code, headers, body):
 	if result != 0 and response_code != 200:
 		if not f.file_exists(local_palettes_file):
 			overlay_container.visible = true
-			overlay_container_label.text = "ERROR!\nNo Internet connection and no local palettes JSON."
+			overlay_container_label.text = "ERROR!\nNo Internet connection and no local palettes file."
 		else:
 			f.open(local_palettes_file, File.READ)
 			data = parse_json(f.get_as_text())

@@ -365,6 +365,7 @@ func load_palettes(response: Dictionary):
 	items_per_page = 10
 	max_pages = ceil(total_count / items_per_page) - 1
 	
+	pagination_label.text = "%s/%s" % [query_params.page + 1, max_pages + 1]
 
 	if total_count <= items_per_page:
 		previous_button.disabled = true

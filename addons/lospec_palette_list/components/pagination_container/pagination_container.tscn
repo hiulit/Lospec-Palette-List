@@ -2,25 +2,33 @@
 
 [node name="PaginationContainer" type="HBoxContainer"]
 anchor_right = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="PaginationLabel" type="Label" parent="."]
+margin_top = 3.0
+margin_bottom = 17.0
+
+[node name="Margin5_01" type="MarginContainer" parent="."]
+margin_left = 4.0
+margin_right = 9.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 5, 0 )
 
 [node name="PreviousButton" type="Button" parent="."]
-margin_right = 75.0
+margin_left = 13.0
+margin_right = 88.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 75, 0 )
 text = "Previous"
 
-[node name="Margin5" type="MarginContainer" parent="."]
-margin_left = 79.0
-margin_right = 84.0
+[node name="Margin5_02" type="MarginContainer" parent="."]
+margin_left = 92.0
+margin_right = 97.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 5, 0 )
 
 [node name="NextButton" type="Button" parent="."]
-margin_left = 88.0
-margin_right = 163.0
+margin_left = 101.0
+margin_right = 176.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 75, 0 )
 text = "Next"

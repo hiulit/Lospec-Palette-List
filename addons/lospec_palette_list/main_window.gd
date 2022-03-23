@@ -73,6 +73,7 @@ onready var http_request := $HTTPRequest
 onready var next_button := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/PaginationContainer/NextButton
 onready var overlay_container := $MainContainer/PalettesContainer/OverlayContainer
 onready var overlay_container_label := $MainContainer/PalettesContainer/OverlayContainer/OverlayLabel
+onready var pagination_label := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/PaginationContainer/PaginationLabel
 onready var previous_button := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/PaginationContainer/PreviousButton
 onready var results_label := $MainContainer/ResultsAndDowloadPathContainer/ResultsAndDownloadPathWrapper/ResultsWrapper/ResultsContainer/ResultsLabel
 onready var scroll_container := $MainContainer/PalettesContainer/ScrollContainer
@@ -150,6 +151,7 @@ func _ready():
 	slider.value = query_params.number
 
 	results_label.text = ""
+	pagination_label.text = ""
 
 	previous_button.disabled = true
 	next_button.disabled = true
@@ -157,6 +159,8 @@ func _ready():
 	overlay_container.visible = true
 	overlay_container_label.text = "Loading..."
 	results_label.text = ""
+	pagination_label.text = ""
+
 
 	var check_connection = HTTPRequest.new()
 	add_child(check_connection)
@@ -183,6 +187,7 @@ func config_get(section: String, key: String):
 		overlay_container.visible = true
 		overlay_container_label.text = "ERROR: Couldn't load the config file!"
 		results_label.text = ""
+		pagination_label.text = ""
 		return ""
 
 	return config.get_value(section, key)
@@ -194,6 +199,7 @@ func config_set(section: String, key: String, value) -> void:
 		overlay_container.visible = true
 		overlay_container_label.text = "ERROR: Couldn't load the config file!"
 		results_label.text = ""
+		pagination_label.text = ""
 		return
 
 	config.set_value(section, key, value)
@@ -297,6 +303,7 @@ func make_http_call():
 		overlay_container.visible = true
 		overlay_container_label.text = "Loading..."
 		results_label.text = ""
+		pagination_label.text = ""
 
 		set_query_string()
 		set_url()
@@ -309,6 +316,7 @@ func make_http_call():
 			overlay_container.visible = true
 			overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
 			results_label.text = ""
+			pagination_label.text = ""
 			return
 
 
@@ -320,6 +328,7 @@ func download_palettes():
 	overlay_container.visible = true
 	overlay_container_label.text = "Downloading palettes..."
 	results_label.text = ""
+	pagination_label.text = ""
 
 	var error = palettes_request.request(base_url)
 
@@ -327,6 +336,7 @@ func download_palettes():
 		overlay_container.visible = true
 		overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
 		results_label.text = ""
+		pagination_label.text = ""
 		return
 
 
@@ -335,12 +345,15 @@ func load_palettes(response: Dictionary):
 		overlay_container.visible = true
 		overlay_container_label.text = "ERROR: " + str(response.error)
 		results_label.text = ""
+		pagination_label.text = ""
+		
 		return
 
 	if not response.palettes:
 		overlay_container.visible = true
 		overlay_container_label.text = "No results!"
 		results_label.text = ""
+		pagination_label.text = ""
 
 		previous_button.disabled = true
 		next_button.disabled = true
@@ -350,6 +363,7 @@ func load_palettes(response: Dictionary):
 	total_count = response.totalCount
 	items_per_page = response.palettes.size()
 	max_pages = ceil(total_count / items_per_page) - 1
+	
 
 	if total_count <= items_per_page:
 		previous_button.disabled = true
@@ -480,6 +494,7 @@ func _on_http_request_completed(result, response_code, headers, body):
 		overlay_container.visible = true
 		overlay_container_label.text = "ERROR: " + str(result) + "-" + str(response_code)
 		results_label.text = ""
+		pagination_label.text = ""
 		return
 
 	var response = parse_json(body.get_string_from_utf8())
@@ -654,6 +669,7 @@ func _on_palettes_request_completed(result, response_code, headers, body):
 		overlay_container.visible = true
 		overlay_container_label.text = "ERROR: " + str(result) + "-" + str(response_code)
 		results_label.text = ""
+		pagination_label.text = ""
 		return
 
 	var f = File.new()

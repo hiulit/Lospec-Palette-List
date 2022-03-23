@@ -36,9 +36,9 @@ var slider_min_value := 2
 var slider_timer_on := false
 var slider_editing_value: int
 
-var total_count
-var max_pages
-var items_per_page
+var total_count: float
+var max_pages: float
+var items_per_page: float
 
 var base_color_rect_size = 16
 
@@ -361,7 +361,8 @@ func load_palettes(response: Dictionary):
 		return
 
 	total_count = response.totalCount
-	items_per_page = response.palettes.size()
+#	items_per_page = response.palettes.size()
+	items_per_page = 10
 	max_pages = ceil(total_count / items_per_page) - 1
 	
 
@@ -445,6 +446,9 @@ func load_palettes(response: Dictionary):
 
 	if query_params.page == 0:
 		previous_button.disabled = true
+	
+	if query_params.page == max_pages:
+		next_button.disabled = true
 
 	overlay_container.visible = false
 

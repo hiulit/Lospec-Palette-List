@@ -84,7 +84,7 @@ onready var sorting_buttons_container := $MainContainer/SearchAndSortContainer/S
 
 
 func _ready():
-	# Add "About" dialog
+	# Add "About" dialog.
 	about_dialog = about_dialog_scene.instance()
 	dialog_layer.add_child(about_dialog)
 	about_dialog_texture = about_dialog.get_node("AboutDialogContainer/TextureRect")
@@ -161,7 +161,6 @@ func _ready():
 	results_label.text = ""
 	pagination_label.text = ""
 
-
 	var check_connection = HTTPRequest.new()
 	add_child(check_connection)
 	check_connection.connect("request_completed", self, "_on_check_connection_completed")
@@ -170,6 +169,7 @@ func _ready():
 		overlay_container.visible = true
 		overlay_container_label.text = "An error occurred in the HTTP request - %s" % error
 		results_label.text = ""
+		pagination_label.text = ""
 		return
 
 

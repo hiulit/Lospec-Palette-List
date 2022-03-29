@@ -1,12 +1,12 @@
 # Lospec Palette List
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/hiulit/Lospec-Palette-List?color=478cbf&style=flat-square) ![MIT license](https://img.shields.io/badge/license-MIT-478cbf?style=flat-square)
+![Godot v3.4.4](https://img.shields.io/badge/Godot-v3.4.4-478cbf?logo=godot-engine&logoColor=white&style=flat-square) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hiulit/Lospec-Palette-List?color=478cbf&style=flat-square) ![MIT license](https://img.shields.io/badge/license-MIT-478cbf?style=flat-square)
 
 Browse through thousands of awesome [Lospec palettes](https://lospec.com/palette-list).
 
 Made for the [Godot Add-on Jam #1](https://itch.io/jam/godot-addons-jam-1).
 
-It's a cross-platform [stand-alone app](https://github.com/hiulit/Lospec-Palette-List/releases), too!
+It's a cross-platform [stand-alone app](#app), too!
 
 ![Lospec Palette List app](/lospec-palette-list-app.png)
 
@@ -15,7 +15,8 @@ It's a cross-platform [stand-alone app](https://github.com/hiulit/Lospec-Palette
 - **Copy** palettes into the clipboard as an array.
 - **Download** palettes as an image.
 - **Offline** support.
-- Support for [Sprite Editor](https://github.com/SoloCodeNet/godot-sprite-editor-addon)*. If the "Sprite Editor" plugin is installed, a new **Open in Sprite Editor** item will appear in the **Download** menu.
+- Support for [Sprite Editor](https://github.com/SoloCodeNet/godot-sprite-editor-addon)*. If the plugin is installed, a new **Open in Sprite Editor** item will appear in the **Download** menu.
+- **New palettes** everyday! Thanks to the [Lospec API](https://github.com/hiulit/lospec-api), which is auto-updated every day at 12:00 CET.
 
 \* Only available for the Godot plugin, not the app.
 
@@ -78,9 +79,9 @@ Thank you very much!
 
 Thanks to:
 
-- Juan Linietsky ([@reduz](https://github.com/reduz)), Ariel Manzur ([@punto-](https://github.com/punto-)), Rémi Verschelde ([@akien-mga](https://github.com/akien-mga)) and all the Godot contributors - For creating and maintaining the [Godot Engine](https://github.com/godotengine/godot).
+- **Juan Linietsky** ([@reduz](https://github.com/reduz)), **Ariel Manzur** ([@punto-](https://github.com/punto-)), **Rémi Verschelde** ([@akien-mga](https://github.com/akien-mga)) and all the **Godot contributors** - For creating and maintaining the [Godot Engine](https://github.com/godotengine/godot).
 - The [Lospec](https://lospec.com) team - For their [palette list](https://lospec.com/palette-list).
-- Wybe Westra ([@Wcubed](https://github.com/Wcubed)) - For the [HFlowContainer](https://github.com/Wcubed/horizontal_flow_container).
+- **Wybe Westra** ([@Wcubed](https://github.com/Wcubed)) - For the [HFlowContainer](https://github.com/Wcubed/horizontal_flow_container).
 
 ## 📝 Licenses
 

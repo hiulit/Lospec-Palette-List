@@ -11,6 +11,7 @@
 - New theme and icon.
 - "About" dialog.
 - Pagination numbers.
+- New **Raspberry Pi 64 bits** binary.
 
 ### Changed
 

@@ -16,7 +16,7 @@
 
 - Enabled `low processor mode`.
 - Removed HiDPI for `Windows`.
-- `macOS` binaries are now smaller.
+- Binaries are now smaller.
 
 ### Fixed
 

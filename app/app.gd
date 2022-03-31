@@ -28,14 +28,14 @@ func _ready():
 
 	main_window_instance.config_file = "user://app_settings.cfg"
 	main_window_instance.default_download_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
-	main_window_instance.base_color_rect_size /= 2
+	main_window_instance.base_color_rect_size /= 2.0
 
 	add_child(main_window_instance)
 
-	main_window_instance.about_dialog_texture.rect_min_size /= 2
-	main_window_instance.about_dialog_text.rect_min_size.y /= 2
-	main_window_instance.about_dialog.rect_size = Vector2(window.width / 2, window.height / 2)
-	main_window_instance.download_path_file_dialog.access = 2
+	main_window_instance.about_dialog_texture.rect_min_size /= 2.0
+	main_window_instance.about_dialog_text.rect_min_size.y /= 2.0
+	main_window_instance.about_dialog.rect_size = Vector2(window.width / 2.0, window.height / 2.0)
+	main_window_instance.download_path_file_dialog.access = 2.0
 
 
 func _notification(what):

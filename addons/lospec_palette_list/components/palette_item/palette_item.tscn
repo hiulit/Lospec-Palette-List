@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://addons/lospec_palette_list/h_flow_container/h_flow_container.gd" type="Script" id=1]
+[gd_scene format=2]
 
 [node name="PaletteItem" type="VBoxContainer"]
 anchor_right = 1.0
@@ -70,15 +68,14 @@ margin_right = 1024.0
 margin_bottom = 51.0
 rect_min_size = Vector2( 0, 15 )
 
-[node name="ColorsGrid" type="Container" parent="."]
+[node name="ColorsGrid" type="HFlowContainer" parent="."]
 margin_top = 55.0
 margin_right = 1024.0
 margin_bottom = 719.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
-horizontal_margin = 0.0
-vertical_margin = 0.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 
 [node name="Margin5" type="MarginContainer" parent="."]
 margin_top = 723.0
@@ -98,14 +95,13 @@ margin_bottom = 14.0
 size_flags_vertical = 0
 text = "Tags:"
 
-[node name="TagsList" type="Container" parent="TagsContainer"]
+[node name="TagsList" type="HFlowContainer" parent="TagsContainer"]
 margin_left = 36.0
 margin_right = 1024.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-script = ExtResource( 1 )
-horizontal_margin = -10.0
-vertical_margin = -10.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
 
 [node name="Margin10" type="MarginContainer" parent="."]
 margin_top = 750.0

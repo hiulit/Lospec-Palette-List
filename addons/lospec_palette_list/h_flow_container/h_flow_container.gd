@@ -1,7 +1,7 @@
 tool
 extends Container
 
-class_name HFlowContainer
+class_name HFlowContainerCustom
 
 # Author: Wcubed
 # Repository: https://github.com/Wcubed/horizontal_flow_container

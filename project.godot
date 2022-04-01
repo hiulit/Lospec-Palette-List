@@ -15,7 +15,7 @@ _global_script_classes=[ {
 "path": "res://addons/lospec_palette_list/classes/filter.gd"
 }, {
 "base": "Container",
-"class": "HFlowContainer",
+"class": "HFlowContainerCustom",
 "language": "GDScript",
 "path": "res://addons/lospec_palette_list/h_flow_container/h_flow_container.gd"
 }, {
@@ -26,7 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Filter": "",
-"HFlowContainer": "",
+"HFlowContainerCustom": "",
 "Sort": ""
 }
 

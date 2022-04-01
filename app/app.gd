@@ -9,18 +9,24 @@ var main_window_instance: Node
 
 onready var main_window := preload("res://addons/lospec_palette_list/main_window.tscn")
 
+
 func _ready():
+	var scale_factor := OS.get_screen_dpi() / 96.0
+
 	if OS.get_name() == "OSX":
-		get_tree().set_screen_stretch(
-			SceneTree.STRETCH_MODE_DISABLED,
-			SceneTree.STRETCH_ASPECT_IGNORE,
-			Vector2(window.width * 2, window.height * 2),
-			2
-		)
+		scale_factor = OS.get_screen_max_scale()
+	elif OS.get_name() == "Windows":
+		if scale_factor < 1.0:
+			scale_factor = 1.0
 
-		OS.set_window_size(Vector2(window.width * 2, window.height * 2))
-
-		OS.center_window()
+	get_tree().set_screen_stretch(
+		SceneTree.STRETCH_MODE_DISABLED,
+		SceneTree.STRETCH_ASPECT_IGNORE,
+		Vector2(window.width * scale_factor, window.height * scale_factor),
+		scale_factor
+	)
+	OS.set_window_size(Vector2(window.width * scale_factor, window.height * scale_factor))
+	OS.center_window()
 
 	main_window_instance = main_window.instance()
 

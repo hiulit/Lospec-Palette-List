@@ -11,11 +11,13 @@ onready var main_window := preload("res://addons/lospec_palette_list/main_window
 
 
 func _ready():
-	var scale_factor := OS.get_screen_dpi() / 96.0
+	var scale_factor := 1.0
 
 	if OS.get_name() == "OSX":
 		scale_factor = OS.get_screen_max_scale()
 	elif OS.get_name() == "Windows":
+		scale_factor = OS.get_screen_dpi() / 96.0
+
 		if scale_factor < 1.0:
 			scale_factor = 1.0
 
@@ -34,14 +36,14 @@ func _ready():
 
 	main_window_instance.config_file = "user://app_settings.cfg"
 	main_window_instance.default_download_path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
-	main_window_instance.base_color_rect_size /= 2
+	main_window_instance.base_color_rect_size /= scale_factor
 
 	add_child(main_window_instance)
 
-	main_window_instance.about_dialog_texture.rect_min_size /= 2
-	main_window_instance.about_dialog_text.rect_min_size.y /= 2
-	main_window_instance.about_dialog.rect_size = Vector2(window.width / 2, window.height / 2)
-	main_window_instance.download_path_file_dialog.access = 2
+	main_window_instance.about_dialog_texture.rect_min_size /= scale_factor
+	main_window_instance.about_dialog_text.rect_min_size.y /= scale_factor
+	main_window_instance.about_dialog.rect_size = Vector2(window.width / scale_factor, window.height / scale_factor)
+	main_window_instance.download_path_file_dialog.access = scale_factor
 
 
 func _notification(what):

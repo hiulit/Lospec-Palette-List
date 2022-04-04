@@ -11,15 +11,13 @@ onready var main_window := preload("res://addons/lospec_palette_list/main_window
 
 
 func _ready():
-	var scale_factor := 1.0
+	var scale_factor := OS.get_screen_dpi() / 96.0
+
+	if scale_factor < 1.0:
+		scale_factor = 1.0
 
 	if OS.get_name() == "OSX":
 		scale_factor = OS.get_screen_max_scale()
-	elif OS.get_name() == "Windows":
-		scale_factor = OS.get_screen_dpi() / 96.0
-
-		if scale_factor < 1.0:
-			scale_factor = 1.0
 
 	get_tree().set_screen_stretch(
 		SceneTree.STRETCH_MODE_DISABLED,

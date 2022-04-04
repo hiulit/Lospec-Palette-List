@@ -484,11 +484,11 @@ func _on_main_window_resized():
 	if Engine.editor_hint:
 		window_size /= 2
 
-	if window_size.x < 768:
+	if window_size.x <= 768:
 		grid_container.columns = 1
-	elif window_size.x < 1280:
+	elif window_size.x <= 1104:
 		grid_container.columns = 2
-	elif window_size.x < 1440:
+	elif window_size.x <= 1440:
 		grid_container.columns = 3
 	else:
 		grid_container.columns = 4
